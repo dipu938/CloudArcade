@@ -1,1 +1,1458 @@
 
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>CloudArcade | Instant Zero-Download Web Gaming</title>
+  <meta name="description" content="Explore 1,200+ free instantaneous browser games powered by WebGL and WASM with zero downloads. Plug in your controller and play immediately."/>
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg"/>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#dbfcff",
+            "on-secondary-container": "#d6a9ff",
+            "on-tertiary-fixed": "#3e0022",
+            "inverse-surface": "#e1e2eb",
+            "outline-variant": "#3b494b",
+            "error": "#ffb4ab",
+            "on-primary": "#00363a",
+            "inverse-on-surface": "#2e3037",
+            "error-container": "#93000a",
+            "secondary-fixed": "#f0dbff",
+            "outline": "#849495",
+            "surface-container-lowest": "#0b0e14",
+            "inverse-primary": "#006970",
+            "surface-variant": "#32353c",
+            "tertiary-container": "#ffccdd",
+            "on-secondary-fixed": "#2c0051",
+            "tertiary-fixed": "#ffd9e4",
+            "secondary-fixed-dim": "#ddb7ff",
+            "primary-fixed-dim": "#00dbe9",
+            "on-surface-variant": "#b9cacb",
+            "surface-bright": "#363940",
+            "primary-fixed": "#7df4ff",
+            "surface-container-highest": "#32353c",
+            "on-secondary": "#490080",
+            "surface-tint": "#00dbe9",
+            "tertiary-fixed-dim": "#ffb0cd",
+            "on-error": "#690005",
+            "secondary": "#ddb7ff",
+            "surface-container-high": "#272a31",
+            "on-tertiary": "#640039",
+            "surface-dim": "#10131a",
+            "surface-container-low": "#191c22",
+            "on-tertiary-container": "#b4146e",
+            "on-secondary-fixed-variant": "#6900b3",
+            "secondary-container": "#6f00be",
+            "on-background": "#e1e2eb",
+            "on-primary-fixed-variant": "#004f54",
+            "surface-container": "#1d2026",
+            "tertiary": "#fff3f5",
+            "on-primary-fixed": "#002022",
+            "on-tertiary-fixed-variant": "#8c0053",
+            "background": "#10131a",
+            "surface": "#10131a",
+            "primary-container": "#00f0ff",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#e1e2eb",
+            "on-primary-container": "#006970"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.5rem",
+            "gutter-mobile": "1rem",
+            "space-2xs": "0.25rem",
+            "space-2xl": "3rem",
+            "space-sm": "0.75rem",
+            "space-lg": "1.5rem",
+            "space-3xl": "4rem",
+            "space-md": "1rem",
+            "container-max": "1440px",
+            "gutter-desktop": "1.5rem",
+            "space-xl": "2rem"
+          },
+          fontFamily: {
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "label-lg": ["JetBrains Mono", "monospace"],
+            "display": ["Sora", "sans-serif"],
+            "headline-xl": ["Sora", "sans-serif"],
+            "headline-lg": ["Sora", "sans-serif"],
+            "headline-md": ["Sora", "sans-serif"],
+            "headline-sm": ["Sora", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "label-sm": ["JetBrains Mono", "monospace"],
+            "label-md": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="./assets/css/style.css"/>
+</head>
+
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+  <!-- Fixed Top Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-b border-surface-container shadow-[0_1px_12px_rgba(0,0,0,0.5)]">
+    <div class="h-20 w-full max-w-[1440px] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
+      
+      <!-- Brand Logo & Live Telemetry -->
+      <div class="flex items-center gap-space-lg">
+        <a href="#discover" data-path="discover" class="flex items-center gap-2.5 shrink-0 group">
+          <img src="./assets/images/logo.png" alt="CloudArcade Logo" class="h-9 w-auto object-contain drop-shadow-[0_0_8px_rgba(0,240,255,0.4)] group-hover:scale-105 transition-transform" />
+          <span class="font-headline-sm text-lg text-on-surface tracking-tight font-extrabold group-hover:text-primary transition-colors">
+            CLOUD<span class="text-primary-container ml-0.5">ARCADE</span>
+          </span>
+        </a>
+
+        <!-- Live Players Telemetry -->
+        <div class="hidden xl:flex items-center h-7 px-3 bg-surface-container rounded-full gap-2 border border-surface-container-high">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
+          </span>
+          <span class="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider">48,210 Playing Now</span>
+        </div>
+
+        <!-- Search Bar Trigger -->
+        <div class="hidden lg:flex items-center relative w-64 xl:w-72">
+          <span class="material-symbols-outlined absolute left-3 text-outline text-lg pointer-events-none">search</span>
+          <input type="text" placeholder="Search games, tags..." 
+                 class="global-search-input w-full h-9 pl-9 pr-14 bg-surface-container-low rounded-lg text-on-surface placeholder:text-outline text-body-sm font-body-sm focus:outline-none focus:bg-surface-container transition-all border border-transparent focus:border-primary-container/40" />
+          <div class="absolute right-2 flex items-center px-1.5 py-0.5 rounded bg-surface-container-highest font-label-sm text-[10px] text-outline pointer-events-none">
+            Ctrl+K
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="hidden 2xl:flex items-center gap-1.5">
+        <a href="#discover" data-path="discover" class="px-3 py-2 rounded-lg transition-all bg-primary-container text-on-primary-container font-headline-sm font-semibold shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+          Discover
+        </a>
+        <a href="#browse-all" data-path="browse-all" class="px-3 py-2 rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">
+          Browse All
+        </a>
+        <a href="#top-rated" data-path="top-rated" class="px-3 py-2 rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">
+          Top Rated
+        </a>
+        <a href="#multiplayer" data-path="multiplayer" class="px-3 py-2 rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">
+          Multiplayer
+        </a>
+        <a href="#tournaments" data-path="tournaments" class="px-3 py-2 rounded-lg font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">
+          Tournaments
+        </a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-space-sm shrink-0">
+        <!-- Play Random Button -->
+        <button id="playRandomBtn" type="button" class="flex items-center gap-1.5 h-9 px-4 bg-primary-container text-on-primary-container font-headline-sm text-sm font-bold rounded-lg hover:bg-primary-fixed-dim transition-all shadow-[0_0_18px_rgba(0,240,255,0.35)] hover:shadow-[0_0_26px_rgba(0,240,255,0.6)] active:scale-95">
+          <span class="material-symbols-outlined text-lg">shuffle</span>
+          <span>Play Random</span>
+        </button>
+
+        <!-- Audio Sound Effects Toggle -->
+        <button id="audioToggleBtn" type="button" aria-label="Toggle Sound Effects" title="Toggle Sound FX" class="flex items-center justify-center w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-lg">volume_up</span>
+        </button>
+
+        <!-- Notifications Indicator -->
+        <button type="button" aria-label="Notifications" class="relative flex items-center justify-center w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-lg">notifications</span>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+        </button>
+
+        <!-- Profile Avatar & Level -->
+        <div class="flex items-center gap-space-xs pl-1">
+          <div class="relative">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-secondary to-primary-container flex items-center justify-center text-on-primary font-bold text-xs shadow-sm ring-2 ring-surface-container-highest">
+              CA
+            </div>
+            <div class="absolute -bottom-1 -right-1 px-1 py-0.2 bg-secondary-container text-on-secondary-container font-label-sm text-[10px] rounded-full shadow-sm font-bold">
+              Lvl 28
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main View Container -->
+  <main class="w-full pt-20 bg-surface min-h-screen">
+
+    <!-- ========================================================= -->
+    <!-- VIEW 1: DISCOVER (HOME) -->
+    <!-- ========================================================= -->
+    <div id="view-discover" class="page-view flex flex-col w-full">
+      
+      <!-- Top Real-Time Platform Event Ticker -->
+      <div class="w-full bg-surface-container-lowest py-2.5 overflow-hidden select-none border-b border-surface-container">
+        <div class="max-w-[1440px] mx-auto px-gutter-desktop flex items-center gap-space-md">
+          <div class="flex items-center gap-1.5 shrink-0 px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary-container">
+            <span class="material-symbols-outlined text-sm animate-pulse" style="font-variation-settings: 'FILL' 1;">bolt</span>
+            <span class="font-label-sm text-label-sm tracking-wider uppercase">Live Activity</span>
+          </div>
+          <div class="relative w-full overflow-hidden whitespace-nowrap mask-edges">
+            <div class="inline-flex items-center gap-space-xl animate-marquee text-on-surface-variant font-label-md text-label-md">
+              <span class="inline-flex items-center gap-2">
+                <span class="text-secondary font-semibold">@Valkyrie99</span> achieved <span class="text-primary-container font-semibold">Sub-42s Lap</span> in <em class="not-italic text-on-surface">CyberRacer: Neo Tokyo</em>
+                <span class="text-outline">· 1m ago</span>
+              </span>
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              <span class="inline-flex items-center gap-2">
+                <span class="text-secondary font-semibold">@PixelGhost</span> unlocked <span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-primary font-mono text-[10px]">GODLIKE STREAK (x25)</span> in <em class="not-italic text-on-surface">ViperGrid.io</em>
+                <span class="text-outline">· 3m ago</span>
+              </span>
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              <span class="inline-flex items-center gap-2">
+                <span class="text-secondary font-semibold">@KitsuneZero</span> cracked <span class="text-primary-container font-semibold">1,420,850 pts</span> on <em class="not-italic text-on-surface">Galactic Overdrive 84</em>
+                <span class="text-outline">· 5m ago</span>
+              </span>
+              <span class="inline-block w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+              <span class="inline-flex items-center gap-2">
+                <span class="text-secondary font-semibold">@NeonReaper</span> won <span class="text-tertiary-container font-semibold">Daily Arena Cup #412</span> in <em class="not-italic text-on-surface">Shadow Katana</em>
+                <span class="text-outline">· 7m ago</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Spotlight: CyberRacer Neo Tokyo -->
+      <section class="relative w-full max-w-[1440px] mx-auto px-gutter-desktop pt-space-lg pb-space-xl">
+        <div class="relative w-full rounded-2xl overflow-hidden bg-surface-container-low shadow-2xl min-h-[560px] flex flex-col justify-end p-space-lg md:p-space-2xl border border-surface-container">
+          <!-- Background Cover Graphic -->
+          <div class="absolute inset-0 z-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1600&q=80');"></div>
+          
+          <!-- Gradient Scrims & Glows -->
+          <div class="absolute inset-0 z-10 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/80 to-transparent"></div>
+          <div class="absolute inset-0 z-10 bg-gradient-to-r from-surface-container-lowest via-surface-container-lowest/60 to-transparent"></div>
+          <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary-container/20 blur-3xl pointer-events-none z-10"></div>
+          <div class="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-secondary/15 blur-3xl pointer-events-none z-10"></div>
+
+          <!-- Content Matrix -->
+          <div class="relative z-20 max-w-3xl flex flex-col gap-space-md">
+            <!-- Badges Cluster -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-bold tracking-wider uppercase shadow-[0_0_16px_rgba(0,240,255,0.4)]">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                Featured Game of the Week
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest/80 backdrop-blur-md text-primary font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-sm">flash_on</span>
+                Instant Play • Zero Install
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-highest/80 backdrop-blur-md text-on-surface font-label-sm text-label-sm">
+                <span class="material-symbols-outlined text-sm text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+                <strong class="font-semibold text-on-surface">4.96</strong>
+                <span class="text-outline-variant">(14.2k)</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-highest/80 backdrop-blur-md text-on-surface font-label-sm text-label-sm">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-fixed-dim opacity-80"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
+                </span>
+                <span class="text-primary-container font-semibold">3,842</span> in game now
+              </span>
+            </div>
+
+            <!-- Title & Description -->
+            <div class="flex flex-col gap-2">
+              <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl text-primary tracking-tight font-extrabold drop-shadow-[0_2px_16px_rgba(0,240,255,0.3)]">
+                CyberRacer: Neo Tokyo
+              </h1>
+              <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+                Rip through zero-gravity magnetic highways suspended over a rain-slicked vertical metropolis. Sub-millisecond physics, instant multi-tier lobby matchmaking, and synched synthwave audio streaming directly in WebGL.
+              </p>
+            </div>
+
+            <!-- Tech Bar -->
+            <div class="flex items-center gap-3 text-outline text-label-sm font-label-sm flex-wrap">
+              <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface">HTML5 Canvas + WebGL</span>
+              <span>•</span>
+              <span class="text-on-surface-variant">120 FPS Locked</span>
+              <span>•</span>
+              <span class="text-on-surface-variant">Controller & Touch Ready</span>
+              <span>•</span>
+              <span class="text-on-surface-variant">Zero Download</span>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+              <button onclick="window.launchGame('cyber-racer-neo')" type="button" class="group relative flex items-center justify-center gap-space-xs px-8 py-3.5 rounded-xl bg-primary-container text-on-primary-container font-headline-md text-headline-md font-bold tracking-tight shadow-[0_0_28px_rgba(0,240,255,0.45)] hover:shadow-[0_0_38px_rgba(0,240,255,0.7)] hover:scale-105 active:scale-95 transition-all duration-200">
+                <span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                <span>PLAY NOW</span>
+                <span class="font-label-sm text-xs px-2 py-0.5 rounded bg-on-primary-container/20 text-on-primary-container">ENTER CANV</span>
+              </button>
+
+              <button onclick="window.toggleFav('cyber-racer-neo')" type="button" class="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-headline-sm text-headline-sm transition-all active:scale-95 shadow-md">
+                <span class="material-symbols-outlined text-lg">bookmark_add</span>
+                <span>Add to Favorites</span>
+              </button>
+
+              <button onclick="window.launchGame('viper-grid-io')" type="button" class="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-headline-sm text-headline-sm transition-all">
+                <span class="material-symbols-outlined text-lg">sports_esports</span>
+                <span>Try ViperGrid.io</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Server Telemetry Overlay -->
+          <div class="hidden lg:flex absolute top-6 right-6 z-20 flex-col items-end gap-1.5 p-3 rounded-xl bg-surface-container-lowest/80 backdrop-blur-md border border-surface-container">
+            <div class="flex items-center gap-2 font-label-sm text-label-sm text-primary">
+              <span class="material-symbols-outlined text-sm text-primary-container">wifi_tethering</span>
+              <span>TOKYO-EDG-01</span>
+              <span class="font-mono text-xs px-1 rounded bg-surface-container text-primary-container">9ms</span>
+            </div>
+            <span class="text-[11px] font-label-sm text-outline">Tickrate: 64Hz • Netcode: Rollback</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Quick Filter Pills -->
+      <section class="w-full max-w-[1440px] mx-auto px-gutter-desktop py-space-xs">
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 select-none no-scrollbar">
+          <a href="#browse-all" data-path="browse-all" class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md font-bold shadow-[0_0_14px_rgba(0,240,255,0.4)]">
+            <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+            <span>All Games</span>
+          </a>
+          <a href="#browse-all" data-path="browse-all" class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright font-label-md text-label-md transition-colors">
+            <span class="material-symbols-outlined text-base">swords</span>
+            <span>Action</span>
+          </a>
+          <a href="#browse-all" data-path="browse-all" class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright font-label-md text-label-md transition-colors">
+            <span class="material-symbols-outlined text-base">hub</span>
+            <span>Multiplayer .IO</span>
+          </a>
+          <a href="#browse-all" data-path="browse-all" class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright font-label-md text-label-md transition-colors">
+            <span class="material-symbols-outlined text-base">videogame_asset</span>
+            <span>Retro 80s</span>
+          </a>
+          <a href="#browse-all" data-path="browse-all" class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright font-label-md text-label-md transition-colors">
+            <span class="material-symbols-outlined text-base">extension</span>
+            <span>Physics Puzzles</span>
+          </a>
+          <a href="#browse-all" data-path="browse-all" class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright font-label-md text-label-md transition-colors">
+            <span class="material-symbols-outlined text-base">refresh</span>
+            <span>Roguelike</span>
+          </a>
+          <a href="#browse-all" data-path="browse-all" class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright font-label-md text-label-md transition-colors">
+            <span class="material-symbols-outlined text-base">directions_car</span>
+            <span>Racing</span>
+          </a>
+          <a href="#browse-all" data-path="browse-all" class="shrink-0 flex items-center gap-2 h-9 px-4 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface hover:bg-surface-bright font-label-md text-label-md transition-colors">
+            <span class="material-symbols-outlined text-base">account_tree</span>
+            <span>Strategy</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Section: Continue Playing -->
+      <section class="w-full max-w-[1440px] mx-auto px-gutter-desktop pt-space-xl">
+        <div class="flex items-center justify-between mb-space-md">
+          <div class="flex items-center gap-space-xs">
+            <span class="w-2 h-6 rounded-full bg-secondary"></span>
+            <h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">Continue Playing</h2>
+            <span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-semibold ml-2">Cloud Save</span>
+          </div>
+          <button onclick="window.location.hash = 'browse-all'" class="text-label-sm text-primary-container hover:underline font-semibold flex items-center gap-1">
+            <span>View All Library</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+
+        <div id="recentsGridContainer" class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+          <!-- Dynamically filled by app.js from localStorage -->
+        </div>
+      </section>
+
+      <!-- Live Community Tournament Promo Banner -->
+      <section class="w-full max-w-[1440px] mx-auto px-gutter-desktop pt-space-2xl">
+        <div class="relative w-full rounded-2xl overflow-hidden bg-gradient-to-r from-surface-container-high via-surface-container to-surface-container-high p-space-lg md:p-space-xl shadow-xl flex flex-col lg:flex-row items-center justify-between gap-space-lg border border-surface-container-highest">
+          <div class="absolute -left-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-secondary-container/30 blur-3xl pointer-events-none"></div>
+          <div class="absolute -right-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-primary-container/20 blur-3xl pointer-events-none"></div>
+
+          <!-- Left Info -->
+          <div class="relative z-10 flex flex-col gap-space-xs max-w-xl">
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-[0_0_12px_rgba(111,0,190,0.5)]">
+                <span class="material-symbols-outlined text-sm">emoji_events</span>
+                Weekend Showdown
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full bg-surface-container-highest text-primary-container font-label-sm text-label-sm font-semibold">
+                3x Platform XP Active
+              </span>
+            </div>
+            <h3 class="font-headline-xl text-2xl sm:text-3xl text-on-surface font-extrabold tracking-tight">
+              Nexus Grand Cyber Cup: Qualifier #3
+            </h3>
+            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Compete in zero-delay synchronized 64-player elimination brackets across 3 rotating titles. Guaranteed cosmetic badges and platform leaderboard trophies for top 10% finalists.
+            </p>
+            <div class="flex items-center gap-space-md pt-2 text-label-sm font-label-sm text-outline flex-wrap">
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-primary">groups</span> 1,024 Cap (782 Enrolled)</span>
+              <span>•</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-base text-secondary">military_tech</span> $5,000 Prize Pool</span>
+            </div>
+          </div>
+
+          <!-- Right: Live Countdown & Join -->
+          <div class="relative z-10 shrink-0 flex flex-col items-center lg:items-end gap-space-md">
+            <div class="flex items-center gap-2 font-mono">
+              <div class="flex flex-col items-center p-2 min-w-[60px] rounded-xl bg-surface-container-lowest shadow-inner border border-surface-container">
+                <span class="font-headline-xl text-2xl text-primary-container font-bold" id="timerHours">14</span>
+                <span class="font-label-sm text-[10px] uppercase text-outline">Hours</span>
+              </div>
+              <span class="font-headline-xl text-2xl text-outline">:</span>
+              <div class="flex flex-col items-center p-2 min-w-[60px] rounded-xl bg-surface-container-lowest shadow-inner border border-surface-container">
+                <span class="font-headline-xl text-2xl text-primary-container font-bold" id="timerMins">38</span>
+                <span class="font-label-sm text-[10px] uppercase text-outline">Mins</span>
+              </div>
+              <span class="font-headline-xl text-2xl text-outline">:</span>
+              <div class="flex flex-col items-center p-2 min-w-[60px] rounded-xl bg-surface-container-lowest shadow-inner border border-surface-container">
+                <span class="font-headline-xl text-2xl text-secondary font-bold" id="timerSecs">42</span>
+                <span class="font-label-sm text-[10px] uppercase text-outline">Secs</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-space-xs">
+              <button type="button" class="btn-register-tournament px-6 py-3 rounded-xl bg-secondary text-on-secondary font-headline-sm text-headline-sm font-bold hover:bg-secondary-fixed shadow-[0_0_20px_rgba(221,183,255,0.4)] hover:shadow-[0_0_28px_rgba(221,183,255,0.7)] transition-all active:scale-95">
+                Register Free
+              </button>
+              <button onclick="window.location.hash = 'tournaments'" type="button" class="px-4 py-3 rounded-xl bg-surface-container-highest hover:bg-surface-bright text-on-surface font-headline-sm text-headline-sm transition-all">
+                Bracket Info
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Trending Now & Most Played -->
+      <section class="w-full max-w-[1440px] mx-auto px-gutter-desktop pt-space-2xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-lg">
+          <div class="flex items-center gap-space-xs">
+            <span class="w-2 h-6 rounded-full bg-primary-container"></span>
+            <h2 class="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">Trending Now & Most Played</h2>
+          </div>
+          <div class="flex items-center p-1 rounded-xl bg-surface-container-low border border-surface-container">
+            <button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold shadow-sm">
+              Realtime Heat
+            </button>
+            <button onclick="window.location.hash = 'browse-all'" class="px-3 py-1.5 rounded-lg text-outline hover:text-on-surface font-label-md text-label-md transition-colors">
+              Top Rated
+            </button>
+            <button onclick="window.location.hash = 'browse-all'" class="px-3 py-1.5 rounded-lg text-outline hover:text-on-surface font-label-md text-label-md transition-colors">
+              Speedrun
+            </button>
+          </div>
+        </div>
+
+        <!-- 6 High-Polish Trending Game Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+          
+          <!-- Card 1: Voxel Dungeon Crawl -->
+          <div class="group relative flex flex-col rounded-2xl bg-surface-container-low hover:bg-surface-container p-3 transition-all duration-300 shadow-md hover:shadow-2xl hover:-translate-y-1 border border-surface-container">
+            <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container-lowest cursor-pointer" onclick="window.launchGame('voxel-dungeon-crawl')">
+              <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80" alt="Voxel Dungeon Crawl" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Roguelike RPG</span>
+              </div>
+              <div class="absolute top-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-mono">
+                <span class="material-symbols-outlined text-xs text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span>4.88</span>
+              </div>
+              <div class="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                <span class="text-primary-container font-mono font-bold">19.7k</span> playing
+              </div>
+              <div class="absolute inset-0 bg-surface-container-lowest/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+                <button type="button" class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.6)] transform scale-95 group-hover:scale-100 transition-transform">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  Instant Launch
+                </button>
+                <span class="font-label-sm text-label-sm text-outline">Instant Load • 18 MB</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5 mt-3 px-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-md text-headline-md text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+                  Voxel Dungeon Crawl
+                </h3>
+                <span class="font-label-sm text-label-sm text-outline uppercase font-mono">PVE CO-OP</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+                Procedural labyrinth depths with deterministic seeds, class synergies, and global leaderboards.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: ViperGrid.io -->
+          <div class="group relative flex flex-col rounded-2xl bg-surface-container-low hover:bg-surface-container p-3 transition-all duration-300 shadow-md hover:shadow-2xl hover:-translate-y-1 border border-surface-container">
+            <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container-lowest cursor-pointer" onclick="window.launchGame('viper-grid-io')">
+              <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80" alt="ViperGrid.io" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-secondary font-label-sm text-label-sm font-semibold">Multiplayer .IO</span>
+              </div>
+              <div class="absolute top-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-mono">
+                <span class="material-symbols-outlined text-xs text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span>4.88</span>
+              </div>
+              <div class="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                <span class="text-secondary font-mono font-bold">42.9k</span> playing
+              </div>
+              <div class="absolute inset-0 bg-surface-container-lowest/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+                <button type="button" class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.6)] transform scale-95 group-hover:scale-100 transition-transform">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  Instant Launch
+                </button>
+                <span class="font-label-sm text-label-sm text-outline">Playable Mini-Game Ready</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5 mt-3 px-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-md text-headline-md text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+                  ViperGrid.io
+                </h3>
+                <span class="font-label-sm text-label-sm text-outline uppercase font-mono">SLITHER ARENA</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+                Consume radiating plasma cores and out-maneuver rival snakes in an electric neon arena.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3: Galactic Overdrive 84 -->
+          <div class="group relative flex flex-col rounded-2xl bg-surface-container-low hover:bg-surface-container p-3 transition-all duration-300 shadow-md hover:shadow-2xl hover:-translate-y-1 border border-surface-container">
+            <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container-lowest cursor-pointer" onclick="window.launchGame('galactic-overdrive-84')">
+              <img src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?auto=format&fit=crop&w=800&q=80" alt="Galactic Overdrive 84" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Retro Arcade</span>
+              </div>
+              <div class="absolute top-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-mono">
+                <span class="material-symbols-outlined text-xs text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span>4.84</span>
+              </div>
+              <div class="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                <span class="text-primary-container font-mono font-bold">8.7k</span> playing
+              </div>
+              <div class="absolute inset-0 bg-surface-container-lowest/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+                <button type="button" class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.6)] transform scale-95 group-hover:scale-100 transition-transform">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  Instant Launch
+                </button>
+                <span class="font-label-sm text-label-sm text-outline">Playable Mini-Game Ready</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5 mt-3 px-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-md text-headline-md text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+                  Galactic Overdrive 84
+                </h3>
+                <span class="font-label-sm text-label-sm text-outline uppercase font-mono">BULLET HELL</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+                Shoot descending alien fleets, trigger laser barrages, and survive cosmic mothership bosses.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4: Prismatics Zero -->
+          <div class="group relative flex flex-col rounded-2xl bg-surface-container-low hover:bg-surface-container p-3 transition-all duration-300 shadow-md hover:shadow-2xl hover:-translate-y-1 border border-surface-container">
+            <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container-lowest cursor-pointer" onclick="window.launchGame('prismatics-zero')">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Prismatics Zero" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Laser Puzzle</span>
+              </div>
+              <div class="absolute top-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-mono">
+                <span class="material-symbols-outlined text-xs text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span>4.98</span>
+              </div>
+              <div class="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                <span class="text-primary-container font-mono font-bold">9.8k</span> playing
+              </div>
+              <div class="absolute inset-0 bg-surface-container-lowest/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+                <button type="button" class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.6)] transform scale-95 group-hover:scale-100 transition-transform">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  Instant Launch
+                </button>
+                <span class="font-label-sm text-label-sm text-outline">Playable Mini-Game Ready</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5 mt-3 px-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-md text-headline-md text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+                  Prismatics Zero
+                </h3>
+                <span class="font-label-sm text-label-sm text-outline uppercase font-mono">LASER OPTICS</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+                Rotate mirrors to refract beam trajectories and ignite dormant quantum reactor crystals.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 5: NeoPuck Striker -->
+          <div class="group relative flex flex-col rounded-2xl bg-surface-container-low hover:bg-surface-container p-3 transition-all duration-300 shadow-md hover:shadow-2xl hover:-translate-y-1 border border-surface-container">
+            <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container-lowest cursor-pointer" onclick="window.launchGame('neopuck-striker')">
+              <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" alt="NeoPuck Striker" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-secondary font-label-sm text-label-sm font-semibold">Air Hockey</span>
+              </div>
+              <div class="absolute top-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-mono">
+                <span class="material-symbols-outlined text-xs text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span>4.90</span>
+              </div>
+              <div class="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                <span class="text-primary-container font-mono font-bold">9.3k</span> playing
+              </div>
+              <div class="absolute inset-0 bg-surface-container-lowest/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+                <button type="button" class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.6)] transform scale-95 group-hover:scale-100 transition-transform">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  Instant Launch
+                </button>
+                <span class="font-label-sm text-label-sm text-outline">Playable Mini-Game Ready</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5 mt-3 px-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-md text-headline-md text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+                  NeoPuck Striker
+                </h3>
+                <span class="font-label-sm text-label-sm text-outline uppercase font-mono">1v1 AIR HOCKEY</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+                Zero-friction cyber table with dynamic physics, angled banks, and high-speed AI challenges.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 6: Shadow Katana -->
+          <div class="group relative flex flex-col rounded-2xl bg-surface-container-low hover:bg-surface-container p-3 transition-all duration-300 shadow-md hover:shadow-2xl hover:-translate-y-1 border border-surface-container">
+            <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-surface-container-lowest cursor-pointer" onclick="window.launchGame('shadow-katana')">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Shadow Katana" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-tertiary font-label-sm text-label-sm font-semibold">Fast Slash</span>
+              </div>
+              <div class="absolute top-2.5 right-2.5 flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-on-surface font-label-sm text-label-sm font-mono">
+                <span class="material-symbols-outlined text-xs text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span>4.91</span>
+              </div>
+              <div class="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface font-label-sm text-label-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+                <span class="text-primary-container font-mono font-bold">24.5k</span> playing
+              </div>
+              <div class="absolute inset-0 bg-surface-container-lowest/80 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4">
+                <button type="button" class="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-headline-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.6)] transform scale-95 group-hover:scale-100 transition-transform">
+                  <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                  Instant Launch
+                </button>
+                <span class="font-label-sm text-label-sm text-outline">Gamepad Compatible</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5 mt-3 px-1">
+              <div class="flex items-center justify-between">
+                <h3 class="font-headline-md text-headline-md text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+                  Shadow Katana
+                </h3>
+                <span class="font-label-sm text-label-sm text-outline uppercase font-mono">PRECISION ACTION</span>
+              </div>
+              <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 leading-relaxed">
+                One-hit elimination precision slasher. Master wall dashes, blade parries, and projectile deflections.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Community Micro-Stats & Cloud Engine Highlights -->
+      <section class="w-full max-w-[1440px] mx-auto px-gutter-desktop pt-space-3xl pb-space-lg">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-space-md p-space-lg rounded-2xl bg-surface-container-lowest border border-surface-container">
+          <div class="flex flex-col gap-1">
+            <span class="font-label-sm text-label-sm text-outline uppercase">Average Launch Time</span>
+            <div class="flex items-baseline gap-1">
+              <span class="font-display text-3xl font-bold text-primary">420</span>
+              <span class="font-headline-sm text-headline-sm text-primary-container font-mono">ms</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Zero installer binary overhead</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-label-sm text-label-sm text-outline uppercase">Edge Compute Nodes</span>
+            <div class="flex items-baseline gap-1">
+              <span class="font-display text-3xl font-bold text-secondary">64</span>
+              <span class="font-headline-sm text-headline-sm text-secondary-fixed font-mono">Global</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Sub-15ms worldwide routing</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-label-sm text-label-sm text-outline uppercase">Active Today</span>
+            <div class="flex items-baseline gap-1">
+              <span class="font-display text-3xl font-bold text-primary">342k</span>
+              <span class="font-headline-sm text-headline-sm text-primary-container font-mono">Players</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">2.1M match sessions booted</span>
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="font-label-sm text-label-sm text-outline uppercase">Developer Payouts</span>
+            <div class="flex items-baseline gap-1">
+              <span class="font-display text-3xl font-bold text-tertiary-container">$1.8M</span>
+              <span class="font-headline-sm text-headline-sm text-tertiary font-mono">Q3</span>
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface-variant">Direct micro-session revenue</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 2: BROWSE ALL (CATALOG & FILTERS) -->
+    <!-- ========================================================= -->
+    <div id="view-browse-all" class="page-view hidden flex-col w-full">
+      <div class="w-full max-w-[1440px] mx-auto px-gutter-desktop py-space-xl flex flex-col gap-space-2xl">
+        
+        <!-- Top Heroic Platform Bar & Stat Highlights -->
+        <div class="relative overflow-hidden rounded-xl bg-surface-container-low p-space-xl shadow-xl flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg border border-surface-container">
+          <div class="absolute -right-16 -top-16 w-96 h-96 rounded-full bg-primary-container/10 blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-12 -bottom-12 w-80 h-80 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none"></div>
+          
+          <div class="flex flex-col gap-space-xs z-10 max-w-2xl">
+            <div class="flex items-center gap-space-xs flex-wrap">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary-fixed font-label-sm text-label-sm tracking-widest uppercase border border-surface-container-high">
+                <span class="h-2 w-2 rounded-full bg-primary-container animate-pulse"></span>
+                Zero Download Architecture
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full bg-secondary-container/50 text-on-secondary-container font-label-sm text-label-sm">
+                1,248 Verified Titles
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+                WASM v4.2 Ready
+              </span>
+            </div>
+            <h1 class="font-display text-4xl sm:text-5xl text-on-surface tracking-tight leading-tight font-extrabold">
+              Explore 1,200+ Free <span class="text-primary-container">Browser Games</span>
+            </h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">
+              Ultra low-latency, WebGL 3D-powered instantaneous gaming catalog. Plug your controller, jump into solo campaigns, or team up in real-time cross-platform lobbies.
+            </p>
+          </div>
+
+          <!-- Live Catalog Telemetry Metrics -->
+          <div class="z-10 grid grid-cols-2 sm:grid-cols-3 gap-space-sm w-full lg:w-auto shrink-0">
+            <div class="flex flex-col p-space-sm rounded-lg bg-surface-container-lowest/80 backdrop-blur-md shadow-md border border-surface-container">
+              <span class="font-label-sm text-label-sm text-outline uppercase">Active Players</span>
+              <span class="font-headline-md text-headline-md text-primary font-bold">52,891</span>
+              <div class="flex items-center gap-1 mt-1 text-primary-fixed text-label-sm font-label-sm">
+                <span class="material-symbols-outlined text-sm">trending_up</span>
+                <span>+14.2% today</span>
+              </div>
+            </div>
+            <div class="flex flex-col p-space-sm rounded-lg bg-surface-container-lowest/80 backdrop-blur-md shadow-md border border-surface-container">
+              <span class="font-label-sm text-label-sm text-outline uppercase">Median Ping</span>
+              <span class="font-headline-md text-headline-md text-on-surface font-bold">11.4 ms</span>
+              <div class="flex items-center gap-1 mt-1 text-primary-container text-label-sm font-label-sm">
+                <span class="material-symbols-outlined text-sm">bolt</span>
+                <span>Global Edge</span>
+              </div>
+            </div>
+            <div class="col-span-2 sm:col-span-1 flex flex-col p-space-sm rounded-lg bg-surface-container-lowest/80 backdrop-blur-md shadow-md border border-surface-container">
+              <span class="font-label-sm text-label-sm text-outline uppercase">Catalog Refresh</span>
+              <span class="font-headline-md text-headline-md text-secondary font-bold">Daily</span>
+              <div class="flex items-center gap-1 mt-1 text-on-surface-variant text-label-sm font-label-sm">
+                <span class="material-symbols-outlined text-sm">update</span>
+                <span>8 New this week</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Curated Spotlight Sections: Staff Picks & Monthly Hidden Gems -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+          <!-- Staff Picks Curated Marquee -->
+          <div class="lg:col-span-7 flex flex-col gap-space-md p-space-lg rounded-xl bg-surface-container-low shadow-lg relative overflow-hidden border border-surface-container">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-primary-container text-2xl">verified</span>
+                <div>
+                  <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Staff Picks of the Week</h2>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Hand-tested for high frame-rates and tactile input fidelity</p>
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-surface-container-highest font-label-sm text-label-sm text-on-surface">Curated by Dev Team</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md mt-space-2xs">
+              <!-- Staff Pick 1 -->
+              <div class="group relative rounded-lg overflow-hidden bg-surface-container flex flex-col shadow-md hover:shadow-xl transition-all duration-300 border border-surface-container-high">
+                <div class="relative h-44 w-full overflow-hidden bg-surface-container-highest cursor-pointer" onclick="window.launchGame('cyber-racer-neo')">
+                  <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80" alt="CyberRacer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+                  <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary-fixed font-label-sm text-label-sm">Racing / Cyberpunk</span>
+                  <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-bold">60 FPS Locked</span>
+                </div>
+                <div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+                  <div>
+                    <div class="flex items-center justify-between text-label-sm font-label-sm text-outline">
+                      <span>AeroForge Studio</span>
+                      <span class="flex items-center text-primary-container gap-0.5 font-bold">★ 4.96</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5 group-hover:text-primary-container transition-colors">HyperVelo Drift 2099</h3>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">High-G gravity racing through vertical metropolis highways with customized nitro slipstreams.</p>
+                  </div>
+                  <div class="flex items-center justify-between pt-space-xs">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant">34.1K Players</span>
+                    <button onclick="window.launchGame('cyber-racer-neo')" type="button" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-body-sm font-bold hover:bg-primary-fixed-dim transition-all shadow-md active:scale-95 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-base">play_arrow</span>
+                      <span>Instant Play</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Staff Pick 2 -->
+              <div class="group relative rounded-lg overflow-hidden bg-surface-container flex flex-col shadow-md hover:shadow-xl transition-all duration-300 border border-surface-container-high">
+                <div class="relative h-44 w-full overflow-hidden bg-surface-container-highest cursor-pointer" onclick="window.launchGame('voxel-dungeon-crawl')">
+                  <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="RuneCraft Chronicles" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent"></div>
+                  <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-secondary font-label-sm text-label-sm">RPG / Roguelike</span>
+                  <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 text-on-surface font-label-sm text-label-sm">Gamepad Ready</span>
+                </div>
+                <div class="p-space-md flex flex-col gap-space-xs flex-1 justify-between">
+                  <div>
+                    <div class="flex items-center justify-between text-label-sm font-label-sm text-outline">
+                      <span>Moonlight Bitworks</span>
+                      <span class="flex items-center text-primary-container gap-0.5 font-bold">★ 4.88</span>
+                    </div>
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mt-0.5 group-hover:text-primary-container transition-colors">RuneCraft Chronicles</h3>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">Procedural rune-crafting and spell-weaving dungeon crawler with rich lore mechanics.</p>
+                  </div>
+                  <div class="flex items-center justify-between pt-space-xs">
+                    <span class="font-label-sm text-label-sm text-on-surface-variant">19.7K Players</span>
+                    <button onclick="window.launchGame('voxel-dungeon-crawl')" type="button" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-body-sm font-bold hover:bg-primary-fixed-dim transition-all shadow-md active:scale-95 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-base">play_arrow</span>
+                      <span>Instant Play</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hidden Gems of the Month -->
+          <div class="lg:col-span-5 flex flex-col gap-space-md p-space-lg rounded-xl bg-surface-container-low shadow-lg border border-surface-container">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-space-xs">
+                <span class="material-symbols-outlined text-secondary text-2xl">diamond</span>
+                <div>
+                  <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Hidden Gems of the Month</h2>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant">Under-the-radar breakout indie sensations</p>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-secondary-container/40 text-on-secondary-container font-label-sm text-label-sm font-semibold">Community Rated</span>
+            </div>
+
+            <div class="flex flex-col gap-space-sm mt-space-2xs">
+              <!-- Gem Row 1: Prismatics Zero -->
+              <div class="group flex items-center gap-space-sm p-2 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+                <div class="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container-highest cursor-pointer" onclick="window.launchGame('prismatics-zero')">
+                  <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=200&q=80" alt="Prismatics Zero" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex flex-col justify-between flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Laser Puzzle</span>
+                    <span class="text-label-sm font-label-sm text-primary-container font-bold">98% Positive</span>
+                  </div>
+                  <h4 class="font-headline-sm text-headline-sm text-on-surface truncate font-bold group-hover:text-primary transition-colors cursor-pointer" onclick="window.launchGame('prismatics-zero')">
+                    Prismatics Zero
+                  </h4>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant truncate">Reflect lasers to power crystalline reactors.</p>
+                </div>
+                <button onclick="window.launchGame('prismatics-zero')" type="button" aria-label="Play Prismatics Zero" class="h-9 w-9 rounded-lg bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary-container text-on-surface flex items-center justify-center shrink-0 transition-colors shadow-sm">
+                  <span class="material-symbols-outlined text-lg">play_arrow</span>
+                </button>
+              </div>
+
+              <!-- Gem Row 2: Sector Command IO -->
+              <div class="group flex items-center gap-space-sm p-2 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+                <div class="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container-highest cursor-pointer" onclick="window.launchGame('sector-command-io')">
+                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=200&q=80" alt="Sector Command IO" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex flex-col justify-between flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">RTS Strategy</span>
+                    <span class="text-label-sm font-label-sm text-primary-container font-bold">96% Positive</span>
+                  </div>
+                  <h4 class="font-headline-sm text-headline-sm text-on-surface truncate font-bold group-hover:text-primary transition-colors cursor-pointer" onclick="window.launchGame('sector-command-io')">
+                    Sector Command IO
+                  </h4>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant truncate">Micro-command 200 drone frigates in instant browser lobbies.</p>
+                </div>
+                <button onclick="window.launchGame('sector-command-io')" type="button" aria-label="Play Sector Command IO" class="h-9 w-9 rounded-lg bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary-container text-on-surface flex items-center justify-center shrink-0 transition-colors shadow-sm">
+                  <span class="material-symbols-outlined text-lg">play_arrow</span>
+                </button>
+              </div>
+
+              <!-- Gem Row 3: Bonsai Oasis -->
+              <div class="group flex items-center gap-space-sm p-2 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors">
+                <div class="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-surface-container-highest cursor-pointer" onclick="window.launchGame('bonsai-oasis')">
+                  <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=200&q=80" alt="Bonsai Oasis" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex flex-col justify-between flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Zen Sandbox</span>
+                    <span class="text-label-sm font-label-sm text-primary-container font-bold">99% Positive</span>
+                  </div>
+                  <h4 class="font-headline-sm text-headline-sm text-on-surface truncate font-bold group-hover:text-primary transition-colors cursor-pointer" onclick="window.launchGame('bonsai-oasis')">
+                    Bonsai Oasis
+                  </h4>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant truncate">Relaxing tactile garden builder with ambient audio synthesizer.</p>
+                </div>
+                <button onclick="window.launchGame('bonsai-oasis')" type="button" aria-label="Play Bonsai Oasis" class="h-9 w-9 rounded-lg bg-surface-container-lowest hover:bg-primary-container hover:text-on-primary-container text-on-surface flex items-center justify-center shrink-0 transition-colors shadow-sm">
+                  <span class="material-symbols-outlined text-lg">play_arrow</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Filter & Control Dashboard -->
+        <div class="flex flex-col gap-space-md p-space-lg rounded-xl bg-surface-container-low shadow-xl border border-surface-container" id="filterControlSection">
+          
+          <!-- Primary Category Navigation Strip -->
+          <div class="flex items-center justify-between gap-space-md overflow-x-auto pb-space-xs no-scrollbar">
+            <div class="flex items-center gap-space-xs shrink-0" id="categoryTabContainer">
+              <button class="category-btn active px-4 py-2 rounded-full font-label-md text-label-md bg-primary-container text-on-primary-container font-bold shadow-md transition-all" data-category="all" type="button">
+                All Genres (1,248)
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="action" type="button">
+                Action
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="adventure" type="button">
+                Adventure
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="puzzle" type="button">
+                Puzzle
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="sports" type="button">
+                Sports
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="racing" type="button">
+                Racing
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="io-games" type="button">
+                IO Games
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="strategy" type="button">
+                Strategy
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="board" type="button">
+                Board
+              </button>
+              <button class="category-btn px-4 py-2 rounded-full font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-all" data-category="arcade" type="button">
+                Arcade Classic
+              </button>
+            </div>
+            <button class="shrink-0 flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container text-outline hover:text-on-surface hover:bg-surface-container-high text-label-sm font-label-sm transition-all" id="resetFiltersBtn" type="button">
+              <span class="material-symbols-outlined text-sm">restart_alt</span>
+              <span>Reset All</span>
+            </button>
+          </div>
+
+          <!-- Secondary Hardware & Capabilities Tags -->
+          <div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs border-t border-surface-container">
+            <div class="flex flex-wrap items-center gap-space-xs" id="tagFilterContainer">
+              <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mr-1">Modes & Hardware:</span>
+              <button class="filter-chip px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 transition-all" data-tag="singleplayer" type="button">
+                <span class="material-symbols-outlined text-sm">person</span>
+                <span>Single Player</span>
+              </button>
+              <button class="filter-chip px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 transition-all" data-tag="multiplayer" type="button">
+                <span class="material-symbols-outlined text-sm">groups</span>
+                <span>Multiplayer</span>
+              </button>
+              <button class="filter-chip px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 transition-all" data-tag="coop" type="button">
+                <span class="material-symbols-outlined text-sm">handshake</span>
+                <span>Co-Op</span>
+              </button>
+              <button class="filter-chip px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 transition-all" data-tag="webgl3d" type="button">
+                <span class="material-symbols-outlined text-sm">view_in_ar</span>
+                <span>WebGL 3D</span>
+              </button>
+              <button class="filter-chip px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 transition-all" data-tag="touch" type="button">
+                <span class="material-symbols-outlined text-sm">touch_app</span>
+                <span>Touch Compatible</span>
+              </button>
+              <button class="filter-chip px-3 py-1.5 rounded-lg bg-surface-container text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm flex items-center gap-1.5 transition-all" data-tag="controller" type="button">
+                <span class="material-symbols-outlined text-sm">sports_esports</span>
+                <span>Controller Supported</span>
+              </button>
+            </div>
+
+            <!-- Sort & View Mode Switcher -->
+            <div class="flex items-center gap-space-sm ml-auto">
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-2.5 text-outline text-lg pointer-events-none">swap_vert</span>
+                <select class="pl-8 pr-8 py-1.5 bg-surface-container rounded-lg text-on-surface font-label-sm text-label-sm appearance-none focus:outline-none focus:bg-surface-container-high transition-all cursor-pointer border border-surface-container-high" id="sortSelect">
+                  <option value="popular">Sort: Most Popular</option>
+                  <option value="highest_rated">Sort: Highest Rated</option>
+                  <option value="recently_added">Sort: Alphabetical</option>
+                  <option value="trending">Sort: Trending Active</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 text-outline text-base pointer-events-none">expand_more</span>
+              </div>
+
+              <div class="flex items-center p-1 rounded-lg bg-surface-container gap-1 border border-surface-container-high">
+                <button class="p-1 rounded bg-surface-container-high text-primary-container" id="btnViewGrid" title="Grid View" type="button">
+                  <span class="material-symbols-outlined text-lg">grid_view</span>
+                </button>
+                <button class="p-1 rounded text-outline hover:text-on-surface hover:bg-surface-container-highest transition-colors" id="btnViewList" title="Compact List View" type="button">
+                  <span class="material-symbols-outlined text-lg">view_list</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result Summary Bar -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-xs text-body-sm font-body-sm text-on-surface-variant">
+          <div class="flex items-center gap-space-xs flex-wrap">
+            <span>Showing <strong id="catalogResultsCount" class="text-on-surface font-headline-sm">16 games</strong></span>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-xs">
+              Instant Play Enabled
+            </span>
+          </div>
+          <div class="flex items-center gap-space-xs text-outline font-label-sm text-label-sm">
+            <span class="material-symbols-outlined text-sm text-primary-container">speed</span>
+            <span>Average Launch: 0.4s</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Game Catalog Grid Container -->
+        <div id="gameCatalogContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-md">
+          <!-- Filled dynamically by app.js -->
+        </div>
+
+        <!-- Pagination Container -->
+        <div id="catalogPaginationContainer" class="w-full">
+          <!-- Filled dynamically by app.js -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 3: TOP RATED & LEADERBOARDS -->
+    <!-- ========================================================= -->
+    <div id="view-top-rated" class="page-view hidden flex-col w-full">
+      <div class="w-full max-w-[1440px] mx-auto px-gutter-desktop py-space-xl flex flex-col gap-space-xl">
+        <div class="p-space-lg rounded-2xl bg-surface-container-low border border-surface-container flex flex-col gap-2">
+          <span class="px-3 py-1 rounded-full bg-primary-container/20 text-primary-container font-label-sm text-xs w-fit font-bold uppercase">
+            Hall of Fame
+          </span>
+          <h2 class="font-display text-3xl font-extrabold text-on-surface">Top Rated Global Games</h2>
+          <p class="font-body-md text-on-surface-variant max-w-xl">
+            Community vetted and rated titles featuring locked high frame rates, verified physics, and global competitive ladders.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+          <!-- Top Rated Item 1 -->
+          <div class="p-4 rounded-xl bg-surface-container-low border border-surface-container flex items-center gap-4">
+            <div class="font-display text-3xl font-extrabold text-primary-container">#1</div>
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=140&q=80" class="w-16 h-16 rounded-lg object-cover" alt="Prismatics Zero"/>
+            <div class="flex flex-col flex-1 min-w-0">
+              <h4 class="font-headline-sm text-on-surface font-bold truncate">Prismatics Zero</h4>
+              <span class="text-xs text-secondary font-semibold">99.2% Positive • 12.1k reviews</span>
+            </div>
+            <button onclick="window.launchGame('prismatics-zero')" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-bold text-xs">Play</button>
+          </div>
+
+          <!-- Top Rated Item 2 -->
+          <div class="p-4 rounded-xl bg-surface-container-low border border-surface-container flex items-center gap-4">
+            <div class="font-display text-3xl font-extrabold text-secondary">#2</div>
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=140&q=80" class="w-16 h-16 rounded-lg object-cover" alt="CyberRacer"/>
+            <div class="flex flex-col flex-1 min-w-0">
+              <h4 class="font-headline-sm text-on-surface font-bold truncate">CyberRacer: Neo Tokyo</h4>
+              <span class="text-xs text-secondary font-semibold">98.8% Positive • 14.2k reviews</span>
+            </div>
+            <button onclick="window.launchGame('cyber-racer-neo')" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-bold text-xs">Play</button>
+          </div>
+
+          <!-- Top Rated Item 3 -->
+          <div class="p-4 rounded-xl bg-surface-container-low border border-surface-container flex items-center gap-4">
+            <div class="font-display text-3xl font-extrabold text-outline">#3</div>
+            <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=140&q=80" class="w-16 h-16 rounded-lg object-cover" alt="Bonsai Oasis"/>
+            <div class="flex flex-col flex-1 min-w-0">
+              <h4 class="font-headline-sm text-on-surface font-bold truncate">Bonsai Oasis</h4>
+              <span class="text-xs text-secondary font-semibold">98.5% Positive • 14.8k reviews</span>
+            </div>
+            <button onclick="window.launchGame('bonsai-oasis')" class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-bold text-xs">Play</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 4: MULTIPLAYER LOBBIES -->
+    <!-- ========================================================= -->
+    <div id="view-multiplayer" class="page-view hidden flex-col w-full">
+      <div class="w-full max-w-[1440px] mx-auto px-gutter-desktop py-space-xl flex flex-col gap-space-xl">
+        <div class="p-space-lg rounded-2xl bg-surface-container-low border border-surface-container flex flex-col gap-2">
+          <span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-xs w-fit font-bold uppercase">
+            Instant Matchmaking
+          </span>
+          <h2 class="font-display text-3xl font-extrabold text-on-surface">Global Multiplayer Arenas</h2>
+          <p class="font-body-md text-on-surface-variant max-w-xl">
+            Real-time peer-to-peer and dedicated rollback server lobbies. Hop straight into a match without creating an account.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+          <div class="p-5 rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-primary-container">LOBBY #2048 • 100 PLAYERS MAX</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-primary-container/20 text-primary-fixed">9ms Ping</span>
+            </div>
+            <h3 class="font-headline-md text-lg font-bold text-on-surface">ViperGrid.io - Cosmic Zone #4</h3>
+            <p class="text-sm text-on-surface-variant">Active 100-player arena with continuous respawns and weekly matrix trophy rewards.</p>
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-xs text-outline">84 / 100 Active</span>
+              <button onclick="window.launchGame('viper-grid-io')" class="px-4 py-2 rounded-lg bg-primary-container text-on-primary-container font-bold text-xs">Join Match</button>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono text-secondary">1v1 RANKED QUEUE</span>
+              <span class="text-xs px-2 py-0.5 rounded bg-secondary-container/20 text-secondary">14ms Ping</span>
+            </div>
+            <h3 class="font-headline-md text-lg font-bold text-on-surface">NeoPuck Striker - Pro Circuit</h3>
+            <p class="text-sm text-on-surface-variant">Competitive 1-on-1 air hockey duel. Fast match finding in under 3 seconds.</p>
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-xs text-outline">128 in Queue</span>
+              <button onclick="window.launchGame('neopuck-striker')" class="px-4 py-2 rounded-lg bg-primary-container text-on-primary-container font-bold text-xs">Quick Queue</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 5: TOURNAMENTS -->
+    <!-- ========================================================= -->
+    <div id="view-tournaments" class="page-view hidden flex-col w-full">
+      <div class="w-full max-w-[1440px] mx-auto px-gutter-desktop py-space-xl flex flex-col gap-space-xl">
+        <div class="p-space-lg rounded-2xl bg-surface-container-low border border-surface-container flex flex-col gap-2">
+          <span class="px-3 py-1 rounded-full bg-primary-container/20 text-primary-container font-label-sm text-xs w-fit font-bold uppercase">
+            Official Championships
+          </span>
+          <h2 class="font-display text-3xl font-extrabold text-on-surface">Weekly Tournaments & Cups</h2>
+          <p class="font-body-md text-on-surface-variant max-w-xl">
+            Free-to-enter community cups with live brackets, automated score validation, and prize pools.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col gap-4">
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div>
+              <span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-mono text-xs font-bold uppercase">Bracket Live</span>
+              <h3 class="text-2xl font-bold text-on-surface mt-1">Nexus Grand Cyber Cup: Qualifier #3</h3>
+            </div>
+            <button type="button" class="btn-register-tournament px-6 py-2.5 rounded-xl bg-secondary text-on-secondary font-bold text-sm shadow-md">
+              Register Free
+            </button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div class="p-3 rounded-lg bg-surface-container border border-surface-container-high">
+              <span class="text-xs text-outline uppercase font-mono">Format</span>
+              <p class="font-bold text-sm text-on-surface mt-0.5">64-Player Single Elimination</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-container border border-surface-container-high">
+              <span class="text-xs text-outline uppercase font-mono">Prize Pool</span>
+              <p class="font-bold text-sm text-primary-container mt-0.5">$5,000 USD + VIP Badges</p>
+            </div>
+            <div class="p-3 rounded-lg bg-surface-container border border-surface-container-high">
+              <span class="text-xs text-outline uppercase font-mono">Game Title</span>
+              <p class="font-bold text-sm text-secondary mt-0.5">CyberRacer: Neo Tokyo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- PLAYABLE ARCADE MODAL (FULL CANVAS PLAYER + TOUCH D-PAD) -->
+  <!-- ========================================================= -->
+  <div id="arcadeModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-md p-2 sm:p-4">
+    <div id="arcadeCabinetFrame" class="relative w-full max-w-5xl bg-surface-container-lowest border-2 border-primary-container/40 rounded-2xl shadow-[0_0_50px_rgba(0,240,255,0.25)] flex flex-col overflow-hidden">
+      
+      <!-- Top Cabinet Header -->
+      <div class="flex items-center justify-between px-4 py-3 bg-surface-container-low border-b border-surface-container">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span id="arcadeGameBadge" class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm text-xs font-bold uppercase">
+            ARCADE
+          </span>
+          <h3 id="arcadeGameTitle" class="font-headline-sm text-base text-on-surface font-extrabold truncate">
+            CyberRacer Neo
+          </h3>
+        </div>
+
+        <!-- Telemetry Scoreboard -->
+        <div class="flex items-center gap-4 font-mono text-xs">
+          <div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container border border-surface-container-high">
+            <span class="text-outline uppercase">SCORE:</span>
+            <span id="arcadeCurrentScore" class="text-primary-container font-bold text-sm">0</span>
+          </div>
+          <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container border border-surface-container-high">
+            <span class="text-outline uppercase">HI-SCORE:</span>
+            <span id="arcadeHighScore" class="text-secondary font-bold text-sm">0</span>
+          </div>
+        </div>
+
+        <!-- Cabinet Controls (CRT, Touch, Pause, Restart, Fullscreen, Close) -->
+        <div class="flex items-center gap-1">
+          <button id="arcadeCrtToggleBtn" type="button" title="Toggle CRT Scanline Effect" class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-lg">tv</span>
+          </button>
+          <button id="toggleVirtualControlsBtn" type="button" title="Toggle Touch Virtual D-Pad" class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-lg">touch_app</span>
+          </button>
+          <button id="arcadePauseBtn" type="button" title="Pause Game [P]" class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-lg">pause</span>
+          </button>
+          <button id="arcadeRestartBtn" type="button" title="Restart Game [R]" class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-lg">replay</span>
+          </button>
+          <button id="arcadeFullscreenBtn" type="button" title="Toggle Fullscreen" class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-lg">fullscreen</span>
+          </button>
+          <button id="closeArcadeModalBtn" type="button" title="Close Game [ESC]" class="p-1.5 rounded-lg text-error hover:bg-surface-container transition-colors">
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Canvas Arcade Screen (Fixed 800x500 Resolution Scale) -->
+      <div id="arcadeCanvasContainer" class="relative w-full aspect-[16/10] max-h-[65vh] bg-[#10131a] flex items-center justify-center overflow-hidden">
+        <canvas id="arcadeCanvas" width="800" height="500" class="w-full h-full object-contain cursor-crosshair"></canvas>
+
+        <!-- VIRTUAL D-PAD & TOUCH OVERLAY (For touch screens & mobile) -->
+        <div id="touchControlsContainer" class="touch-controls absolute inset-x-0 bottom-2 px-4 pointer-events-none hidden justify-between items-end z-20">
+          
+          <!-- Virtual D-Pad (Left hand) -->
+          <div class="pointer-events-auto relative w-32 h-32 flex items-center justify-center">
+            <!-- Center hub -->
+            <div class="absolute w-10 h-10 rounded-full bg-surface-container/60 border border-primary-container/30"></div>
+            <!-- Up -->
+            <button id="touchUp" type="button" class="touch-btn absolute top-0 w-11 h-11">
+              <span class="material-symbols-outlined text-xl">expand_less</span>
+            </button>
+            <!-- Down -->
+            <button id="touchDown" type="button" class="touch-btn absolute bottom-0 w-11 h-11">
+              <span class="material-symbols-outlined text-xl">expand_more</span>
+            </button>
+            <!-- Left -->
+            <button id="touchLeft" type="button" class="touch-btn absolute left-0 w-11 h-11">
+              <span class="material-symbols-outlined text-xl">chevron_left</span>
+            </button>
+            <!-- Right -->
+            <button id="touchRight" type="button" class="touch-btn absolute right-0 w-11 h-11">
+              <span class="material-symbols-outlined text-xl">chevron_right</span>
+            </button>
+          </div>
+
+          <!-- Virtual Action Buttons (Right hand) -->
+          <div class="pointer-events-auto flex items-center gap-3">
+            <!-- Action B (Nitro / Skill) -->
+            <button id="touchActionB" type="button" class="touch-btn touch-btn-action w-13 h-13 p-3 text-xs font-bold font-mono">
+              B / NITRO
+            </button>
+            <!-- Action A (Shoot / Boost / Space) -->
+            <button id="touchActionA" type="button" class="touch-btn w-15 h-15 p-3.5 text-xs font-bold font-mono text-primary-container border-primary-container">
+              A / SHOOT
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Cabinet Footer Description & Keybinds -->
+      <div class="px-4 py-2.5 bg-surface-container-low border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-label-sm text-outline">
+        <p id="arcadeGameDesc" class="truncate text-on-surface-variant max-w-lg">
+          Use Arrow keys or WASD to navigate. Spacebar / Shift for actions.
+        </p>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface">Arrow Keys / WASD</span>
+          <span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface">[SPACE] / [SHIFT]</span>
+          <span class="px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface">[P] Pause</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- UNIVERSAL SEARCH MODAL (CTRL+K) -->
+  <!-- ========================================================= -->
+  <div id="searchModal" class="fixed inset-0 z-50 hidden items-start justify-center bg-black/75 backdrop-blur-sm pt-20 px-4">
+    <div class="relative w-full max-w-2xl bg-surface-container-low border border-surface-container-highest rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <div class="flex items-center px-4 py-3 border-b border-surface-container gap-2">
+        <span class="material-symbols-outlined text-outline text-xl">search</span>
+        <input id="searchModalInput" type="text" placeholder="Search 1,200+ games by title, genre, developer, tags..." 
+               class="w-full bg-transparent text-on-surface placeholder:text-outline text-body-md font-body-md focus:outline-none" />
+        <button id="closeSearchModalBtn" type="button" class="p-1 rounded-lg text-outline hover:text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <div id="searchModalResults" class="p-3 flex flex-col gap-2 max-h-96 overflow-y-auto">
+        <!-- Results dynamically inserted here -->
+      </div>
+
+      <div class="px-4 py-2 bg-surface-container-lowest border-t border-surface-container flex items-center justify-between text-[11px] font-label-sm text-outline">
+        <span>Press <strong class="text-on-surface">ESC</strong> to exit</span>
+        <span>CloudArcade Instant Search</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- TOURNAMENT REGISTRATION MODAL -->
+  <!-- ========================================================= -->
+  <div id="tournamentModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="relative w-full max-w-md bg-surface-container-low border border-surface-container-highest rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-secondary text-2xl">emoji_events</span>
+          <h3 class="font-headline-sm text-lg font-bold text-on-surface">Tournament Entry</h3>
+        </div>
+        <button id="closeTournamentModalBtn" type="button" class="p-1 rounded-lg text-outline hover:text-on-surface">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+      <p class="text-sm text-on-surface-variant leading-relaxed">
+        You are enrolling in <strong class="text-primary font-semibold">Nexus Grand Cyber Cup: Qualifier #3</strong>. Zero fees, instant lobby seeding, and live stream telemetry broadcast.
+      </p>
+      <div class="flex flex-col gap-2 text-xs font-mono text-outline">
+        <div class="flex justify-between p-2 rounded bg-surface-container">
+          <span>PLAYER CALLSIGN:</span>
+          <span class="text-primary-container">CloudPilot_28</span>
+        </div>
+        <div class="flex justify-between p-2 rounded bg-surface-container">
+          <span>SEEDING REGION:</span>
+          <span class="text-secondary">TOKYO-EDG-01</span>
+        </div>
+      </div>
+      <button onclick="document.getElementById('tournamentModal').classList.add('hidden'); window.ArcadeSound.playCoin(); alert('Registration Confirmed! Your match bracket has been reserved.');" type="button" class="w-full py-3 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:bg-primary-fixed-dim transition-all">
+        Confirm Free Registration
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================================= -->
+  <footer class="w-full bg-surface-container-lowest mt-space-3xl border-t border-surface-container">
+    <div class="w-full max-w-[1440px] mx-auto px-gutter-desktop py-space-2xl">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl">
+        
+        <div class="md:col-span-1 flex flex-col gap-space-sm">
+          <div class="flex items-center gap-2.5">
+            <img src="./assets/images/logo.png" alt="CloudArcade Logo" class="h-8 w-auto object-contain" />
+            <span class="font-headline-sm text-headline-sm text-on-surface font-bold">
+              CLOUD<span class="text-primary-container ml-0.5">ARCADE</span>
+            </span>
+          </div>
+          <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Ultra low-latency, instant zero-download web gaming powered by WebGL & WASM. Designed for GitHub Pages.
+          </p>
+          <div class="flex items-center gap-space-xs mt-space-2xs">
+            <a href="https://github.com" target="_blank" rel="noreferrer" aria-label="GitHub Repository" class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors">
+              <span class="material-symbols-outlined text-lg">code</span>
+            </a>
+            <a href="#discover" aria-label="Discord Community" class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors">
+              <span class="material-symbols-outlined text-lg">forum</span>
+            </a>
+            <a href="#discover" aria-label="Live Streams" class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors">
+              <span class="material-symbols-outlined text-lg">live_tv</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-space-xs">
+          <h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Platform</h4>
+          <a href="#discover" data-path="discover" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Discover Games</a>
+          <a href="#browse-all" data-path="browse-all" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Game Library (1,248)</a>
+          <a href="#top-rated" data-path="top-rated" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Leaderboards</a>
+          <a href="#tournaments" data-path="tournaments" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Championships</a>
+        </div>
+
+        <div class="flex flex-col gap-space-xs">
+          <h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Developers</h4>
+          <a href="#browse-all" data-path="browse-all" class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary-container transition-colors">Developer Portal</a>
+          <a href="#browse-all" data-path="browse-all" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">WebGL & WASM SDK</a>
+          <a href="#browse-all" data-path="browse-all" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Publishing Guidelines</a>
+          <a href="#browse-all" data-path="browse-all" class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors">Revenue Analytics</a>
+        </div>
+
+        <div class="flex flex-col gap-space-xs">
+          <h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Platform Status</h4>
+          <div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-space-2xs border border-surface-container">
+            <div class="flex items-center gap-space-2xs">
+              <span class="h-2 w-2 rounded-full bg-primary-container animate-pulse"></span>
+              <span class="font-label-sm text-label-sm text-on-surface font-semibold">All Systems Operational</span>
+            </div>
+            <span class="font-label-sm text-label-sm text-outline">Average Latency: 11.4ms</span>
+            <span class="font-label-sm text-label-sm text-outline">Edge Nodes: Global (64)</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-space-2xl pt-space-lg border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-outline">
+        <p>© 2026 CloudArcade Inc. All rights reserved. Built for GitHub Pages deployment.</p>
+        <div class="flex items-center gap-space-lg">
+          <a href="#discover" class="hover:text-on-surface transition-colors">Privacy Policy</a>
+          <a href="#discover" class="hover:text-on-surface transition-colors">Terms of Service</a>
+          <a href="#discover" class="hover:text-on-surface transition-colors">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core Scripts -->
+  <script src="./assets/js/games-data.js"></script>
+  <script src="./assets/js/arcade-engine.js"></script>
+  <script src="./assets/js/app.js"></script>
+</body>
+</html>
