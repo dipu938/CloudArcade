@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
   <title>CloudArcade | Instant Web Gaming Platform</title>
-  <meta name="description" content="Instant zero-download web gaming platform for GitHub Pages. Play HTML5 canvas games or upload your own games live."/>
+  <meta name="description" content="Instant zero-download web gaming platform for GitHub Pages. Play HTML5 canvas games live."/>
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg"/>
 
   <!-- Google Fonts -->
@@ -101,73 +101,73 @@
 <body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container pb-16 md:pb-0 overflow-x-hidden">
 
   <!-- ========================================================= -->
-  <!-- HEADER (FULLY RESPONSIVE FOR MOBILE & DESKTOP) -->
+  <!-- HEADER (CLEAN, ACCURATE PRESENCE, NO UPLOAD OPTION) -->
   <!-- ========================================================= -->
   <header class="fixed top-0 left-0 right-0 z-40 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-surface-container shadow-md">
-    <div class="h-16 sm:h-20 w-full max-w-[1440px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-2 sm:gap-4">
+    <div class="h-16 sm:h-20 w-full max-w-[1440px] mx-auto px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4">
       
-      <!-- Brand Logo -->
-      <div class="flex items-center gap-3">
+      <!-- Brand Logo & Real-time Visitor Count -->
+      <div class="flex items-center gap-2 sm:gap-4 min-w-0">
         <a href="#discover" data-path="discover" class="flex items-center gap-2 group shrink-0">
           <img src="./assets/images/logo.jpg" onerror="this.onerror=null; this.src='./assets/images/logo.png';" alt="CloudArcade Logo" 
                class="h-8 sm:h-9 w-auto object-contain drop-shadow-[0_0_10px_rgba(0,240,255,0.4)] group-hover:scale-105 transition-transform" />
-          <span class="font-headline-sm text-base sm:text-lg text-on-surface tracking-tight font-extrabold group-hover:text-primary transition-colors">
+          <span class="font-headline-sm text-sm sm:text-lg text-on-surface tracking-tight font-extrabold group-hover:text-primary transition-colors">
             CLOUD<span class="text-primary-container ml-0.5">ARCADE</span>
           </span>
         </a>
 
-        <!-- Real-Time Online Presence (Accurate, Live, Never Fake) -->
-        <div id="liveOnlineBadge" class="flex items-center h-6 sm:h-7 px-2 sm:px-3 bg-surface-container rounded-full gap-1.5 sm:gap-2 border border-surface-container-high">
+        <!-- Real-Time Active Visitor Badge (Live Presence) -->
+        <div id="liveOnlineBadge" class="flex items-center h-6 sm:h-7 px-2 sm:px-3 bg-surface-container rounded-full gap-1.5 sm:gap-2 border border-surface-container-high shrink-0">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-container"></span>
           </span>
-          <span id="liveOnlineText" class="font-label-sm text-[11px] sm:text-xs text-on-surface-variant uppercase tracking-wider font-semibold">
-            1 Online (You)
+          <span id="liveOnlineText" class="font-label-sm text-[10px] sm:text-xs text-on-surface-variant uppercase tracking-wider font-semibold whitespace-nowrap">
+            1 Active Visitor
           </span>
         </div>
       </div>
 
       <!-- Desktop Navigation Tabs -->
-      <nav class="hidden lg:flex items-center gap-1.5">
-        <a href="#discover" data-path="discover" class="px-3 py-1.5 rounded-lg transition-all bg-primary-container text-on-primary-container font-headline-sm font-semibold shadow-[0_0_12px_rgba(0,240,255,0.3)]">
+      <nav class="hidden lg:flex items-center gap-2">
+        <a href="#discover" data-path="discover" class="px-3.5 py-1.5 rounded-lg transition-all bg-primary-container text-on-primary-container font-headline-sm font-semibold shadow-[0_0_12px_rgba(0,240,255,0.3)]">
           Discover
         </a>
-        <a href="#browse-all" data-path="browse-all" class="px-3 py-1.5 rounded-lg font-headline-sm text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">
+        <a href="#browse-all" data-path="browse-all" class="px-3.5 py-1.5 rounded-lg font-headline-sm text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">
           Game Library
         </a>
-        <button type="button" onclick="window.openUploadModal()" class="px-3 py-1.5 rounded-lg font-headline-sm text-sm text-primary-container hover:bg-primary-container/20 transition-all flex items-center gap-1">
-          <span class="material-symbols-outlined text-base">add_circle</span>
-          <span>Upload Game</span>
+        <button type="button" onclick="window.launchRandomGame()" class="px-3.5 py-1.5 rounded-lg font-headline-sm text-sm text-secondary hover:bg-surface-container-high transition-all flex items-center gap-1">
+          <span class="material-symbols-outlined text-base">shuffle</span>
+          <span>Play Random</span>
         </button>
       </nav>
 
       <!-- Right Action Group -->
-      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
         
         <!-- Search Trigger Button -->
         <button id="headerSearchBtn" type="button" aria-label="Search games" title="Search (Ctrl+K)" 
-                class="flex items-center justify-center w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors">
-          <span class="material-symbols-outlined text-lg">search</span>
+                class="flex items-center justify-center w-8 sm:w-9 h-8 sm:h-9 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-base sm:text-lg">search</span>
         </button>
 
         <!-- Audio Mute Toggle -->
         <button id="audioToggleBtn" type="button" aria-label="Toggle Sound Effects" title="Toggle Sound FX" 
-                class="flex items-center justify-center w-9 h-9 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors">
-          <span class="material-symbols-outlined text-lg">volume_up</span>
+                class="flex items-center justify-center w-8 sm:w-9 h-8 sm:h-9 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-base sm:text-lg">volume_up</span>
         </button>
 
-        <!-- Upload Game (Desktop Button) -->
-        <button type="button" onclick="window.openUploadModal()" 
-                class="hidden sm:flex items-center gap-1 h-9 px-3.5 bg-secondary text-on-secondary font-headline-sm text-xs font-bold rounded-lg hover:bg-secondary-fixed transition-all shadow-[0_0_14px_rgba(221,183,255,0.35)] active:scale-95">
-          <span class="material-symbols-outlined text-base">upload_file</span>
-          <span>Upload Game</span>
+        <!-- Play Random (Desktop Button) -->
+        <button type="button" onclick="window.launchRandomGame()" 
+                class="hidden sm:flex items-center gap-1.5 h-9 px-3.5 bg-primary-container text-on-primary-container font-headline-sm text-xs font-bold rounded-lg hover:bg-primary-fixed-dim transition-all shadow-[0_0_14px_rgba(0,240,255,0.35)] active:scale-95">
+          <span class="material-symbols-outlined text-base">shuffle</span>
+          <span>Play Random</span>
         </button>
 
         <!-- Mobile Drawer Toggle Button -->
         <button id="mobileMenuBtn" type="button" aria-label="Open mobile menu" 
-                class="lg:hidden flex items-center justify-center w-9 h-9 rounded-lg bg-surface-container text-on-surface">
-          <span class="material-symbols-outlined text-xl">menu</span>
+                class="lg:hidden flex items-center justify-center w-8 sm:w-9 h-8 sm:h-9 rounded-lg bg-surface-container text-on-surface">
+          <span class="material-symbols-outlined text-lg sm:text-xl">menu</span>
         </button>
 
       </div>
@@ -201,13 +201,13 @@
             <span class="material-symbols-outlined text-lg">sports_esports</span>
             <span>Game Library</span>
           </a>
-          <button type="button" onclick="window.openUploadModal(); window.closeMobileDrawer();" class="px-3 py-2.5 rounded-lg text-primary-container hover:bg-surface-container font-headline-sm text-sm font-semibold flex items-center gap-2 text-left">
-            <span class="material-symbols-outlined text-lg">upload_file</span>
-            <span>+ Upload New Game</span>
+          <button type="button" onclick="window.launchRandomGame(); window.closeMobileDrawer();" class="px-3 py-2.5 rounded-lg text-secondary hover:bg-surface-container font-headline-sm text-sm font-semibold flex items-center gap-2 text-left">
+            <span class="material-symbols-outlined text-lg">shuffle</span>
+            <span>Play Random Game</span>
           </button>
-          <button type="button" onclick="window.loadBuiltinDemos(); window.closeMobileDrawer();" class="px-3 py-2.5 rounded-lg text-secondary hover:bg-surface-container font-headline-sm text-sm font-semibold flex items-center gap-2 text-left">
-            <span class="material-symbols-outlined text-lg">casino</span>
-            <span>Load 5 Built-in Games</span>
+          <button type="button" onclick="window.launchGame('cyber-racer-neo'); window.closeMobileDrawer();" class="px-3 py-2.5 rounded-lg text-primary-container hover:bg-surface-container font-headline-sm text-sm font-semibold flex items-center gap-2 text-left">
+            <span class="material-symbols-outlined text-lg">videogame_asset</span>
+            <span>Launch CyberRacer Neo</span>
           </button>
         </nav>
       </div>
@@ -215,34 +215,30 @@
       <div class="flex flex-col gap-2 border-t border-surface-container pt-4 text-xs font-label-sm text-outline">
         <div class="flex items-center gap-2">
           <span class="h-2 w-2 rounded-full bg-primary-container"></span>
-          <span class="text-on-surface font-semibold">GitHub Pages Ready</span>
+          <span class="text-on-surface font-semibold">GitHub Pages Live</span>
         </div>
-        <p class="leading-relaxed">Zero server requirements. Static instantaneous deployment.</p>
+        <p class="leading-relaxed">Zero server requirements. Instant client-side execution.</p>
       </div>
     </div>
   </div>
 
   <!-- ========================================================= -->
-  <!-- MOBILE BOTTOM NAVIGATION (NATIVE APP FEEL) -->
+  <!-- MOBILE BOTTOM NAVIGATION (CLEAN 4-BUTTON BAR) -->
   <!-- ========================================================= -->
   <div class="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-surface-container-lowest/95 backdrop-blur-xl border-t border-surface-container flex items-center justify-around py-1.5 px-2 safe-area-pb shadow-lg">
-    <a href="#discover" data-path="discover" class="flex flex-col items-center gap-0.5 py-1 px-3 text-primary-container font-headline-sm text-[11px] font-bold">
+    <a href="#discover" data-path="discover" class="flex flex-col items-center gap-0.5 py-1 px-4 text-primary-container font-headline-sm text-[11px] font-bold">
       <span class="material-symbols-outlined text-xl">explore</span>
       <span>Discover</span>
     </a>
-    <a href="#browse-all" data-path="browse-all" class="flex flex-col items-center gap-0.5 py-1 px-3 text-outline hover:text-on-surface font-headline-sm text-[11px]">
+    <a href="#browse-all" data-path="browse-all" class="flex flex-col items-center gap-0.5 py-1 px-4 text-outline hover:text-on-surface font-headline-sm text-[11px]">
       <span class="material-symbols-outlined text-xl">sports_esports</span>
       <span>Library</span>
     </a>
-    <button type="button" onclick="window.openUploadModal()" class="flex flex-col items-center gap-0.5 py-1 px-3 text-secondary font-headline-sm text-[11px] font-bold">
-      <span class="material-symbols-outlined text-xl">add_circle</span>
-      <span>Upload</span>
+    <button type="button" onclick="window.launchRandomGame()" class="flex flex-col items-center gap-0.5 py-1 px-4 text-secondary font-headline-sm text-[11px] font-bold">
+      <span class="material-symbols-outlined text-xl">shuffle</span>
+      <span>Random</span>
     </button>
-    <button type="button" onclick="window.launchGame('cyber-racer-neo')" class="flex flex-col items-center gap-0.5 py-1 px-3 text-outline hover:text-on-surface font-headline-sm text-[11px]">
-      <span class="material-symbols-outlined text-xl">videogame_asset</span>
-      <span>Arcade</span>
-    </button>
-    <button type="button" onclick="window.openSearchModal()" class="flex flex-col items-center gap-0.5 py-1 px-3 text-outline hover:text-on-surface font-headline-sm text-[11px]">
+    <button type="button" onclick="window.openSearchModal()" class="flex flex-col items-center gap-0.5 py-1 px-4 text-outline hover:text-on-surface font-headline-sm text-[11px]">
       <span class="material-symbols-outlined text-xl">search</span>
       <span>Search</span>
     </button>
@@ -260,117 +256,113 @@
       
       <!-- Live Real-Time Activity Ticker -->
       <div class="w-full bg-surface-container-lowest py-2 overflow-hidden select-none border-b border-surface-container text-xs">
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 flex items-center gap-3">
+        <div class="max-w-[1440px] mx-auto px-3 sm:px-6 flex items-center gap-3">
           <div class="flex items-center gap-1 shrink-0 px-2 py-0.5 rounded-full bg-surface-container-high text-primary-container font-label-sm text-[10px] uppercase font-bold tracking-wider">
             <span class="material-symbols-outlined text-xs animate-pulse" style="font-variation-settings: 'FILL' 1;">bolt</span>
-            <span>Real-Time</span>
+            <span>Live System</span>
           </div>
           <div class="relative w-full overflow-hidden whitespace-nowrap mask-edges">
             <div id="liveTickerText" class="inline-flex items-center gap-space-xl animate-marquee text-on-surface-variant font-label-sm text-xs">
               <span class="inline-flex items-center gap-2">
                 <span class="text-primary-container font-semibold">⚡ CloudArcade Platform Active</span>
-                <span class="text-outline">· Zero backend required · GitHub Pages Ready</span>
+                <span class="text-outline">· Zero downloads required · Instant client-side execution</span>
               </span>
               <span class="inline-block w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
               <span class="inline-flex items-center gap-2">
-                <span class="text-secondary font-semibold">🎮 Upload your HTML5 games</span>
-                <span class="text-outline">· Real-time in-browser gameplay</span>
+                <span class="text-secondary font-semibold">🎮 HTML5 Canvas & WebGL Games</span>
+                <span class="text-outline">· 100% playable in browser with touch controls</span>
               </span>
               <span class="inline-block w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
               <span class="inline-flex items-center gap-2">
-                <span class="text-primary font-semibold">🕹️ HTML5 Canvas & WebGL Engine</span>
-                <span class="text-outline">· Full touch virtual D-Pad supported</span>
+                <span class="text-primary font-semibold">🕹️ Virtual D-Pad Ready</span>
+                <span class="text-outline">· Smooth two-thumb mobile controls</span>
               </span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Real Live Hero Hub -->
-      <section class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 pt-4 sm:pt-8 pb-6 sm:pb-12">
-        <div class="relative w-full rounded-2xl overflow-hidden bg-gradient-to-b from-surface-container-low to-surface-container-lowest p-6 sm:p-12 shadow-2xl border border-surface-container flex flex-col gap-6">
+      <!-- Hero Hub -->
+      <section class="w-full max-w-[1440px] mx-auto px-3 sm:px-6 pt-4 sm:pt-8 pb-6 sm:pb-10">
+        <div class="relative w-full rounded-2xl overflow-hidden bg-gradient-to-b from-surface-container-low to-surface-container-lowest p-5 sm:p-10 shadow-2xl border border-surface-container flex flex-col gap-5">
           
-          <!-- Background Ambient Glow -->
-          <div class="absolute -right-20 -top-20 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-primary-container/15 blur-3xl pointer-events-none"></div>
-          <div class="absolute -left-20 -bottom-20 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none"></div>
+          <div class="absolute -right-20 -top-20 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-primary-container/15 blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-20 -bottom-20 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none"></div>
 
           <!-- Hero Content -->
-          <div class="relative z-10 flex flex-col gap-4 max-w-3xl">
+          <div class="relative z-10 flex flex-col gap-3.5 max-w-3xl">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-container/20 border border-primary-container/40 text-primary-fixed font-label-sm text-xs font-bold uppercase tracking-wider">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary-container/20 border border-primary-container/40 text-primary-fixed font-label-sm text-[11px] font-bold uppercase tracking-wider">
                 <span class="h-2 w-2 rounded-full bg-primary-container animate-pulse"></span>
-                Live Web Gaming
+                Instant Play
               </span>
-              <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-xs">
+              <span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-[11px]">
                 Zero Downloads
               </span>
-              <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-secondary font-label-sm text-xs">
-                Touch & Gamepad Ready
+              <span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-[11px]">
+                Touch & Gamepad
               </span>
             </div>
 
-            <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl text-on-surface tracking-tight font-extrabold leading-tight">
-              Play & Host Games on <span class="text-primary-container">CloudArcade</span>
+            <h1 class="font-display text-2xl sm:text-4xl lg:text-5xl text-on-surface tracking-tight font-extrabold leading-tight">
+              Instant Web Arcade on <span class="text-primary-container">CloudArcade</span>
             </h1>
 
-            <p class="font-body-md sm:font-body-lg text-sm sm:text-base text-on-surface-variant leading-relaxed">
-              Your instant, self-hosted web arcade running directly on GitHub Pages. Launch built-in HTML5 canvas games or easily upload your own playable web games without any backend server.
+            <p class="font-body-md text-xs sm:text-sm md:text-base text-on-surface-variant leading-relaxed">
+              Ultra low-latency, WebGL & HTML5 canvas gaming station running directly on GitHub Pages. Jump into solo runs or challenge your personal high scores on any desktop or mobile device.
             </p>
 
-            <!-- Call to Actions -->
-            <div class="flex flex-wrap items-center gap-3 pt-2">
-              <button type="button" onclick="window.openUploadModal()" 
-                      class="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-secondary text-on-secondary font-headline-sm text-sm sm:text-base font-bold shadow-[0_0_24px_rgba(221,183,255,0.4)] hover:shadow-[0_0_32px_rgba(221,183,255,0.7)] hover:scale-105 active:scale-95 transition-all">
-                <span class="material-symbols-outlined text-xl">upload_file</span>
-                <span>Upload a Game</span>
-              </button>
-
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-2.5 pt-1">
               <button type="button" onclick="window.launchGame('cyber-racer-neo')" 
-                      class="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-sm sm:text-base font-bold shadow-[0_0_24px_rgba(0,240,255,0.35)] hover:shadow-[0_0_32px_rgba(0,240,255,0.6)] hover:scale-105 active:scale-95 transition-all">
-                <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-                <span>Launch Arcade</span>
+                      class="flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-xs sm:text-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.35)] hover:shadow-[0_0_30px_rgba(0,240,255,0.6)] hover:scale-105 active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                <span>Play CyberRacer Neo</span>
               </button>
 
-              <button type="button" onclick="window.loadBuiltinDemos()" 
-                      class="flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-xs sm:text-sm font-semibold border border-surface-container-high transition-all">
-                <span class="material-symbols-outlined text-base text-secondary">casino</span>
-                <span>Load 5 Built-in Games</span>
+              <button type="button" onclick="window.launchRandomGame()" 
+                      class="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-xl bg-secondary text-on-secondary font-headline-sm text-xs sm:text-sm font-bold shadow-[0_0_18px_rgba(221,183,255,0.35)] hover:bg-secondary-fixed transition-all active:scale-95">
+                <span class="material-symbols-outlined text-lg">shuffle</span>
+                <span>Play Random Game</span>
+              </button>
+
+              <button type="button" onclick="window.location.hash = 'browse-all'" 
+                      class="flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-xs sm:text-sm font-semibold border border-surface-container-high transition-all">
+                <span>View Library</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
               </button>
             </div>
           </div>
 
-          <!-- Feature Cards Row -->
-          <div class="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-surface-container">
-            <div class="p-3.5 rounded-xl bg-surface-container/60 border border-surface-container-high flex flex-col gap-1">
-              <span class="text-xs font-mono text-primary-container font-bold uppercase">100% Client-Side</span>
-              <p class="text-xs text-on-surface-variant">Runs on any static host including GitHub Pages with zero server costs.</p>
+          <!-- Highlights Row -->
+          <div class="relative z-10 grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3 border-t border-surface-container">
+            <div class="p-3 rounded-xl bg-surface-container/60 border border-surface-container-high flex flex-col gap-0.5">
+              <span class="text-[11px] font-mono text-primary-container font-bold uppercase">100% Client-Side</span>
+              <p class="text-xs text-on-surface-variant">Zero backend required. Runs live on GitHub Pages.</p>
             </div>
-            <div class="p-3.5 rounded-xl bg-surface-container/60 border border-surface-container-high flex flex-col gap-1">
-              <span class="text-xs font-mono text-secondary font-bold uppercase">Mobile Touch D-Pad</span>
-              <p class="text-xs text-on-surface-variant">Built-in virtual directional D-Pad and action buttons for phones & tablets.</p>
+            <div class="p-3 rounded-xl bg-surface-container/60 border border-surface-container-high flex flex-col gap-0.5">
+              <span class="text-[11px] font-mono text-secondary font-bold uppercase">Mobile Touch D-Pad</span>
+              <p class="text-xs text-on-surface-variant">On-screen directional controls tailored for phones.</p>
             </div>
-            <div class="p-3.5 rounded-xl bg-surface-container/60 border border-surface-container-high flex flex-col gap-1">
-              <span class="text-xs font-mono text-primary font-bold uppercase">Real-Time Sync</span>
-              <p class="text-xs text-on-surface-variant">Live presence detection without fake inflated visitor numbers.</p>
+            <div class="p-3 rounded-xl bg-surface-container/60 border border-surface-container-high flex flex-col gap-0.5">
+              <span class="text-[11px] font-mono text-primary font-bold uppercase">Accurate Visitor Sync</span>
+              <p class="text-xs text-on-surface-variant">Live visitor presence tracking in real-time.</p>
             </div>
           </div>
 
         </div>
       </section>
 
-      <!-- Section: Library Showcase -->
-      <section class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 pb-12">
+      <!-- Section: Active Games in Library -->
+      <section class="w-full max-w-[1440px] mx-auto px-3 sm:px-6 pb-12">
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
             <span class="w-2 h-5 rounded-full bg-primary-container"></span>
-            <h2 class="font-headline-lg text-xl sm:text-2xl text-on-surface font-bold">Your Game Library</h2>
+            <h2 class="font-headline-lg text-lg sm:text-2xl text-on-surface font-bold">Playable Arcade Games</h2>
           </div>
-          <button type="button" onclick="window.openUploadModal()" class="text-xs font-bold text-primary-container hover:underline flex items-center gap-1">
-            <span>+ Add Game</span>
-          </button>
+          <span class="text-xs text-outline font-label-sm">5 Ready to Play</span>
         </div>
 
-        <!-- Live Games Grid (Shows uploaded games, or empty state) -->
         <div id="homeGamesContainer" class="w-full">
           <!-- Dynamically populated by app.js -->
         </div>
@@ -382,23 +374,17 @@
     <!-- VIEW 2: BROWSE ALL / LIBRARY -->
     <!-- ========================================================= -->
     <div id="view-browse-all" class="page-view hidden flex-col w-full">
-      <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 py-6 flex flex-col gap-6">
+      <div class="w-full max-w-[1440px] mx-auto px-3 sm:px-6 py-6 flex flex-col gap-6">
         
-        <!-- Header & Add Game CTA -->
-        <div class="p-6 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="p-5 sm:p-6 rounded-2xl bg-surface-container-low border border-surface-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div class="flex flex-col gap-1">
-            <h1 class="font-display text-2xl sm:text-3xl font-extrabold text-on-surface">Game Library</h1>
-            <p class="font-body-sm text-sm text-on-surface-variant">Manage, play, and organize all games uploaded to your CloudArcade station.</p>
+            <h1 class="font-display text-xl sm:text-2xl font-extrabold text-on-surface">Arcade Game Library</h1>
+            <p class="font-body-sm text-xs sm:text-sm text-on-surface-variant">Instant in-browser playable games running with HTML5 Canvas & Web Audio.</p>
           </div>
-          <div class="flex items-center gap-2 flex-wrap">
-            <button type="button" onclick="window.openUploadModal()" class="px-4 py-2.5 rounded-xl bg-secondary text-on-secondary font-headline-sm text-xs sm:text-sm font-bold shadow-md hover:bg-secondary-fixed transition-all flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-lg">upload_file</span>
-              <span>Upload Game</span>
-            </button>
-            <button type="button" onclick="window.loadBuiltinDemos()" class="px-3 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-headline-sm text-xs sm:text-sm font-semibold border border-surface-container-high transition-all">
-              Load Built-in Games
-            </button>
-          </div>
+          <button type="button" onclick="window.launchRandomGame()" class="px-4 py-2 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-xs sm:text-sm font-bold shadow-md hover:bg-primary-fixed-dim transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-base">shuffle</span>
+            <span>Play Random Game</span>
+          </button>
         </div>
 
         <!-- Catalog Container -->
@@ -428,7 +414,7 @@
           </h3>
         </div>
 
-        <!-- Scoreboard (for built-in canvas games) -->
+        <!-- Scoreboard -->
         <div id="arcadeScoreGroup" class="flex items-center gap-2 font-mono text-xs">
           <div class="flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container border border-surface-container-high">
             <span class="text-outline uppercase text-[10px]">SCORE:</span>
@@ -440,7 +426,7 @@
           </div>
         </div>
 
-        <!-- Cabinet Action Buttons -->
+        <!-- Controls -->
         <div class="flex items-center gap-1">
           <button id="toggleVirtualControlsBtn" type="button" title="Toggle Virtual Touch D-Pad" class="p-1.5 rounded-lg text-outline hover:text-on-surface hover:bg-surface-container transition-colors">
             <span class="material-symbols-outlined text-base sm:text-lg">touch_app</span>
@@ -457,42 +443,31 @@
         </div>
       </div>
 
-      <!-- Canvas / Iframe Game Viewport -->
+      <!-- Canvas Viewport -->
       <div id="arcadeCanvasContainer" class="relative w-full flex-1 sm:aspect-[16/10] bg-[#10131a] flex items-center justify-center overflow-hidden">
-        
-        <!-- Canvas for Built-in Games -->
         <canvas id="arcadeCanvas" width="800" height="500" class="w-full h-full object-contain cursor-crosshair"></canvas>
 
-        <!-- Iframe for User Uploaded Web Games -->
-        <iframe id="arcadeIframe" class="w-full h-full border-0 hidden" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-        <!-- ========================================================= -->
-        <!-- VIRTUAL D-PAD & TOUCH OVERLAY (MOBILE OPTIMIZED) -->
-        <!-- ========================================================= -->
+        <!-- VIRTUAL D-PAD & TOUCH OVERLAY FOR MOBILE -->
         <div id="touchControlsContainer" class="touch-controls absolute inset-x-0 bottom-2 px-3 sm:px-6 pointer-events-none hidden justify-between items-end z-30">
           
-          <!-- Ergonomic Left Hand D-Pad -->
+          <!-- Left Hand D-Pad -->
           <div class="pointer-events-auto relative w-36 h-36 flex items-center justify-center">
             <div class="absolute w-12 h-12 rounded-full bg-surface-container/60 border border-primary-container/30"></div>
-            <!-- Up -->
             <button id="touchUp" type="button" class="touch-btn absolute top-0 w-12 h-12 shadow-lg">
               <span class="material-symbols-outlined text-2xl">expand_less</span>
             </button>
-            <!-- Down -->
             <button id="touchDown" type="button" class="touch-btn absolute bottom-0 w-12 h-12 shadow-lg">
               <span class="material-symbols-outlined text-2xl">expand_more</span>
             </button>
-            <!-- Left -->
             <button id="touchLeft" type="button" class="touch-btn absolute left-0 w-12 h-12 shadow-lg">
               <span class="material-symbols-outlined text-2xl">chevron_left</span>
             </button>
-            <!-- Right -->
             <button id="touchRight" type="button" class="touch-btn absolute right-0 w-12 h-12 shadow-lg">
               <span class="material-symbols-outlined text-2xl">chevron_right</span>
             </button>
           </div>
 
-          <!-- Ergonomic Right Hand Action Buttons -->
+          <!-- Right Hand Action Buttons -->
           <div class="pointer-events-auto flex items-center gap-3">
             <button id="touchActionB" type="button" class="touch-btn touch-btn-action w-14 h-14 p-2 text-xs font-bold font-mono shadow-lg">
               B
@@ -520,105 +495,13 @@
   </div>
 
   <!-- ========================================================= -->
-  <!-- UPLOAD / ADD GAME MODAL (REAL WORKING UPLOAD) -->
-  <!-- ========================================================= -->
-  <div id="uploadGameModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
-    <div class="relative w-full max-w-lg bg-surface-container-low border border-surface-container-highest rounded-2xl shadow-2xl p-5 sm:p-6 flex flex-col gap-4 my-auto">
-      
-      <div class="flex items-center justify-between border-b border-surface-container pb-3">
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-secondary text-2xl">upload_file</span>
-          <h3 class="font-headline-sm text-lg font-bold text-on-surface">Upload / Add a Game</h3>
-        </div>
-        <button id="closeUploadModalBtn" type="button" class="p-1 rounded-lg text-outline hover:text-on-surface">
-          <span class="material-symbols-outlined text-lg">close</span>
-        </button>
-      </div>
-
-      <form id="uploadGameForm" class="flex flex-col gap-3.5 text-sm">
-        <div>
-          <label class="block text-xs font-semibold text-outline uppercase font-mono mb-1">Game Title *</label>
-          <input id="upTitle" type="text" required placeholder="e.g. Neon Runner, Space Invaders..." 
-                 class="w-full px-3 py-2 rounded-lg bg-surface-container border border-surface-container-high text-on-surface focus:outline-none focus:border-primary-container" />
-        </div>
-
-        <div class="grid grid-cols-2 gap-2">
-          <div>
-            <label class="block text-xs font-semibold text-outline uppercase font-mono mb-1">Genre / Category</label>
-            <select id="upGenre" class="w-full px-3 py-2 rounded-lg bg-surface-container border border-surface-container-high text-on-surface focus:outline-none focus:border-primary-container">
-              <option value="arcade">Arcade</option>
-              <option value="action">Action</option>
-              <option value="puzzle">Puzzle</option>
-              <option value="racing">Racing</option>
-              <option value="sports">Sports</option>
-              <option value="io-games">IO Games</option>
-              <option value="adventure">Adventure</option>
-              <option value="strategy">Strategy</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-outline uppercase font-mono mb-1">Developer</label>
-            <input id="upDev" type="text" placeholder="Your Name / Studio" 
-                   class="w-full px-3 py-2 rounded-lg bg-surface-container border border-surface-container-high text-on-surface focus:outline-none focus:border-primary-container" />
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-outline uppercase font-mono mb-1">Game Source (Choose One) *</label>
-          <div class="flex flex-col gap-2 p-3 rounded-xl bg-surface-container border border-surface-container-high">
-            
-            <!-- Option A: Web URL -->
-            <div>
-              <span class="text-xs text-primary-container font-semibold">Option A: Playable Game URL</span>
-              <input id="upUrl" type="url" placeholder="https://example.com/game or itch.io embed URL" 
-                     class="w-full mt-1 px-3 py-2 rounded-lg bg-surface-container-lowest border border-surface-container-high text-on-surface text-xs focus:outline-none focus:border-primary-container" />
-            </div>
-
-            <!-- Option B: Upload HTML file -->
-            <div class="border-t border-surface-container-high pt-2">
-              <span class="text-xs text-secondary font-semibold">Option B: Upload HTML5 Game File (.html)</span>
-              <input id="upFile" type="file" accept=".html,.htm" 
-                     class="w-full mt-1 text-xs text-outline file:mr-3 file:py-1 file:px-2.5 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-primary-container file:text-on-primary-container hover:file:bg-primary-fixed-dim cursor-pointer" />
-            </div>
-
-            <!-- Option C: Built-in Engine Template -->
-            <div class="border-t border-surface-container-high pt-2">
-              <span class="text-xs text-on-surface-variant font-semibold">Option C: Or use a Built-in Canvas Template</span>
-              <select id="upTemplate" class="w-full mt-1 px-3 py-1.5 rounded-lg bg-surface-container-lowest border border-surface-container-high text-on-surface text-xs focus:outline-none">
-                <option value="">None (I provided a URL or file above)</option>
-                <option value="cyber-racer">Template: CyberRacer Neo (3D Dodge Racer)</option>
-                <option value="viper-grid">Template: ViperGrid.io (Neon Snake Arena)</option>
-                <option value="galactic-overdrive">Template: Galactic Overdrive (Space Shmup)</option>
-                <option value="prismatics-zero">Template: Prismatics Zero (Laser Optics)</option>
-                <option value="neopuck">Template: NeoPuck Striker (Air Hockey)</option>
-              </select>
-            </div>
-
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-semibold text-outline uppercase font-mono mb-1">Description</label>
-          <textarea id="upDesc" rows="2" placeholder="Brief game overview and instructions..." 
-                    class="w-full px-3 py-2 rounded-lg bg-surface-container border border-surface-container-high text-on-surface text-xs focus:outline-none focus:border-primary-container"></textarea>
-        </div>
-
-        <button type="submit" class="w-full py-3 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-sm font-bold shadow-[0_0_20px_rgba(0,240,255,0.4)] hover:bg-primary-fixed-dim transition-all mt-1">
-          Save & Add to Library
-        </button>
-      </form>
-
-    </div>
-  </div>
-
-  <!-- ========================================================= -->
   <!-- UNIVERSAL SEARCH MODAL (CTRL+K) -->
   <!-- ========================================================= -->
   <div id="searchModal" class="fixed inset-0 z-50 hidden items-start justify-center bg-black/80 backdrop-blur-sm pt-16 sm:pt-24 px-4">
     <div class="relative w-full max-w-2xl bg-surface-container-low border border-surface-container-highest rounded-2xl shadow-2xl overflow-hidden flex flex-col">
       <div class="flex items-center px-4 py-3 border-b border-surface-container gap-2">
         <span class="material-symbols-outlined text-outline text-xl">search</span>
-        <input id="searchModalInput" type="text" placeholder="Search your games..." 
+        <input id="searchModalInput" type="text" placeholder="Search games..." 
                class="w-full bg-transparent text-on-surface placeholder:text-outline text-body-md font-body-md focus:outline-none" />
         <button id="closeSearchModalBtn" type="button" class="p-1 rounded-lg text-outline hover:text-on-surface transition-colors">
           <span class="material-symbols-outlined text-lg">close</span>
@@ -640,7 +523,7 @@
   <!-- FOOTER -->
   <!-- ========================================================= -->
   <footer class="w-full bg-surface-container-lowest mt-16 border-t border-surface-container mb-12 sm:mb-0">
-    <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div class="w-full max-w-[1440px] mx-auto px-4 sm:px-6 py-8">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
         
         <div class="flex items-center gap-2.5">
@@ -652,12 +535,12 @@
         </div>
 
         <div class="flex items-center gap-4 text-xs text-outline">
-          <button type="button" onclick="window.openUploadModal()" class="hover:text-primary-container transition-colors font-semibold">
-            + Upload Game
+          <button type="button" onclick="window.launchRandomGame()" class="hover:text-primary-container transition-colors font-semibold">
+            Play Random
           </button>
-          <button type="button" onclick="window.loadBuiltinDemos()" class="hover:text-secondary transition-colors font-semibold">
-            Built-in Templates
-          </button>
+          <a href="#browse-all" data-path="browse-all" class="hover:text-secondary transition-colors font-semibold">
+            Game Library
+          </a>
           <a href="https://github.com" target="_blank" class="hover:text-on-surface transition-colors">GitHub</a>
         </div>
 
