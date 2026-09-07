@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
   <title>CloudArcade | Instant Web Gaming Platform</title>
   <meta name="description" content="Instant zero-download web gaming platform for GitHub Pages. Play HTML5 canvas games live."/>
-  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMxMDEzMWEiLz4KICA8cGF0aCBkPSJNMTggMTJINDZMNDIgMjZIMjJMMTggMTJaIiBmaWxsPSJ1cmwoI2FyY2FkZUdyYWQpIiBzdHJva2U9IiMwMGYwZmYiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxyZWN0IHg9IjIzIiB5PSIxNiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjciIHJ4PSIxIiBmaWxsPSIjMTAxMzFhIiBzdHJva2U9IiMwMGYwZmYiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHBhdGggZD0iTTE2IDI2SDQ4TDUyIDUySDEyTDE2IDI2WiIgZmlsbD0iIzFkMjAyNiIgc3Ryb2tlPSIjNmYwMGJlIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8Y2lyY2xlIGN4PSIyNiIgY3k9IjM1IiByPSI0IiBmaWxsPSIjMDBmMGZmIi8+CiAgPGxpbmUgeDE9IjI2IiB5MT0iMzUiIHgyPSIyNiIgeTI9IjQyIiBzdHJva2U9IiNkYmZjZmYiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxjaXJjbGUgY3g9IjM4IiBjeT0iMzQiIHI9IjIuNSIgZmlsbD0iI2ZmMDA3NyIvPgogIDxjaXJjbGUgY3g9IjQzIiBjeT0iMzciIHI9IjIuNSIgZmlsbD0iI2RkYjdmZiIvPgogIDxyZWN0IHg9IjI1IiB5PSI0NCIgd2lkdGg9IjE0IiBoZWlnaHQ9IjYiIHJ4PSIyIiBmaWxsPSIjMGIwZTE0IiBzdHJva2U9IiMwMGYwZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJhcmNhZGVHcmFkIiB4MT0iMTgiIHkxPSIxMiIgeDI9IjQ2IiB5Mj0iMjYiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzAwZjBmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNkZGI3ZmYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgo8L3N2Zz4K"/>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -95,7 +95,136 @@
   </script>
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="./assets/css/style.css"/>
+  <style>
+/* CloudArcade - Custom Styling & Animations */
+
+/* CRT Retro Scanline Effect */
+.crt-overlay::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+  background-size: 100% 4px;
+  z-index: 15;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Neon Glows */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+.glow-cyan-lg {
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.65);
+}
+.glow-purple {
+  box-shadow: 0 0 20px rgba(221, 183, 255, 0.4);
+}
+.glow-magenta {
+  box-shadow: 0 0 20px rgba(255, 0, 119, 0.4);
+}
+
+/* Marquee Infinite Scrolling */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 35s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Edge Masking for Smooth Fade */
+.mask-edges {
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #10131a;
+}
+::-webkit-scrollbar-thumb {
+  background: #272a31;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00dbe9;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Touch D-Pad Overlay (Only active/visible on touch devices or test toggle) */
+.touch-controls {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.touch-btn {
+  background: rgba(29, 32, 38, 0.75);
+  border: 1.5px solid rgba(0, 240, 255, 0.4);
+  color: #dbfcff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.1s, background 0.1s;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+.touch-btn:active {
+  background: rgba(0, 240, 255, 0.35);
+  transform: scale(0.92);
+}
+.touch-btn-action {
+  border-color: rgba(221, 183, 255, 0.5);
+  box-shadow: 0 0 12px rgba(221, 183, 255, 0.3);
+}
+.touch-btn-action:active {
+  background: rgba(221, 183, 255, 0.4);
+}
+
+/* Subtle Shimmer for Highlighting */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.08) 20%,
+    rgba(255, 255, 255, 0.2) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2.5s infinite;
+}
+
+</style>
 </head>
 
 <body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container pb-16 md:pb-0 overflow-x-hidden">
@@ -109,8 +238,23 @@
       <!-- Brand Logo & Real-time Visitor Count -->
       <div class="flex items-center gap-2 sm:gap-4 min-w-0">
         <a href="#discover" data-path="discover" class="flex items-center gap-2 group shrink-0">
-          <img src="./assets/images/logo.jpg" onerror="this.onerror=null; this.src='./assets/images/logo.png';" alt="CloudArcade Logo" 
-               class="h-8 sm:h-9 w-auto object-contain drop-shadow-[0_0_10px_rgba(0,240,255,0.4)] group-hover:scale-105 transition-transform" />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" class="h-8 sm:h-9 w-auto drop-shadow-[0_0_10px_rgba(0,240,255,0.4)] group-hover:scale-105 transition-transform">
+  <rect width="64" height="64" rx="14" fill="#10131a"/>
+  <path d="M18 12H46L42 26H22L18 12Z" fill="url(#arcadeGradLogo)" stroke="#00f0ff" stroke-width="2"/>
+  <rect x="23" y="16" width="18" height="7" rx="1" fill="#10131a" stroke="#00f0ff" stroke-width="1.5"/>
+  <path d="M16 26H48L52 52H12L16 26Z" fill="#1d2026" stroke="#6f00be" stroke-width="2"/>
+  <circle cx="26" cy="35" r="4" fill="#00f0ff"/>
+  <line x1="26" y1="35" x2="26" y2="42" stroke="#dbfcff" stroke-width="2"/>
+  <circle cx="38" cy="34" r="2.5" fill="#ff0077"/>
+  <circle cx="43" cy="37" r="2.5" fill="#ddb7ff"/>
+  <rect x="25" y="44" width="14" height="6" rx="2" fill="#0b0e14" stroke="#00f0ff" stroke-width="1"/>
+  <defs>
+    <linearGradient id="arcadeGradLogo" x1="18" y1="12" x2="46" y2="26" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00f0ff"/>
+      <stop offset="1" stop-color="#ddb7ff"/>
+    </linearGradient>
+  </defs>
+</svg>
           <span class="font-headline-sm text-sm sm:text-lg text-on-surface tracking-tight font-extrabold group-hover:text-primary transition-colors">
             CLOUD<span class="text-primary-container ml-0.5">ARCADE</span>
           </span>
@@ -184,7 +328,23 @@
       <div class="flex flex-col gap-5">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <img src="./assets/images/logo.jpg" alt="Logo" class="h-7 w-auto" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" class="h-7 w-auto drop-shadow-[0_0_10px_rgba(0,240,255,0.4)] group-hover:scale-105 transition-transform">
+  <rect width="64" height="64" rx="14" fill="#10131a"/>
+  <path d="M18 12H46L42 26H22L18 12Z" fill="url(#arcadeGradLogo)" stroke="#00f0ff" stroke-width="2"/>
+  <rect x="23" y="16" width="18" height="7" rx="1" fill="#10131a" stroke="#00f0ff" stroke-width="1.5"/>
+  <path d="M16 26H48L52 52H12L16 26Z" fill="#1d2026" stroke="#6f00be" stroke-width="2"/>
+  <circle cx="26" cy="35" r="4" fill="#00f0ff"/>
+  <line x1="26" y1="35" x2="26" y2="42" stroke="#dbfcff" stroke-width="2"/>
+  <circle cx="38" cy="34" r="2.5" fill="#ff0077"/>
+  <circle cx="43" cy="37" r="2.5" fill="#ddb7ff"/>
+  <rect x="25" y="44" width="14" height="6" rx="2" fill="#0b0e14" stroke="#00f0ff" stroke-width="1"/>
+  <defs>
+    <linearGradient id="arcadeGradLogo" x1="18" y1="12" x2="46" y2="26" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00f0ff"/>
+      <stop offset="1" stop-color="#ddb7ff"/>
+    </linearGradient>
+  </defs>
+</svg>
             <span class="font-headline-sm text-sm font-bold">CloudArcade</span>
           </div>
           <button id="closeMobileDrawerBtn" type="button" class="p-1 rounded-lg text-outline hover:text-on-surface">
@@ -527,7 +687,23 @@
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
         
         <div class="flex items-center gap-2.5">
-          <img src="./assets/images/logo.jpg" onerror="this.onerror=null; this.src='./assets/images/logo.png';" alt="CloudArcade Logo" class="h-7 w-auto object-contain" />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" class="h-7 w-auto drop-shadow-[0_0_10px_rgba(0,240,255,0.4)] group-hover:scale-105 transition-transform">
+  <rect width="64" height="64" rx="14" fill="#10131a"/>
+  <path d="M18 12H46L42 26H22L18 12Z" fill="url(#arcadeGradLogo)" stroke="#00f0ff" stroke-width="2"/>
+  <rect x="23" y="16" width="18" height="7" rx="1" fill="#10131a" stroke="#00f0ff" stroke-width="1.5"/>
+  <path d="M16 26H48L52 52H12L16 26Z" fill="#1d2026" stroke="#6f00be" stroke-width="2"/>
+  <circle cx="26" cy="35" r="4" fill="#00f0ff"/>
+  <line x1="26" y1="35" x2="26" y2="42" stroke="#dbfcff" stroke-width="2"/>
+  <circle cx="38" cy="34" r="2.5" fill="#ff0077"/>
+  <circle cx="43" cy="37" r="2.5" fill="#ddb7ff"/>
+  <rect x="25" y="44" width="14" height="6" rx="2" fill="#0b0e14" stroke="#00f0ff" stroke-width="1"/>
+  <defs>
+    <linearGradient id="arcadeGradLogo" x1="18" y1="12" x2="46" y2="26" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00f0ff"/>
+      <stop offset="1" stop-color="#ddb7ff"/>
+    </linearGradient>
+  </defs>
+</svg>
           <span class="font-headline-sm text-sm text-on-surface font-bold">
             CLOUD<span class="text-primary-container ml-0.5">ARCADE</span>
           </span>
@@ -554,8 +730,1634 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="./assets/js/games-data.js"></script>
-  <script src="./assets/js/arcade-engine.js"></script>
-  <script src="./assets/js/app.js"></script>
+  
+  <!-- Bundled Self-Contained Engine & Application Code -->
+  <script>
+/* =========================================================
+   1. CloudArcade Game Database & Presence
+   ========================================================= */
+// CloudArcade - Real-Time Visitor Presence & Game Database
+(function() {
+  'use strict';
+
+  // Games categorized into groups (e.g. MINI GAME)
+  const CLOUD_ARCADE_GAMES = [
+    {
+      id: "cyber-racer-neo",
+      fallbackImage: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBiMGUxNCIvPjxzdG9wIG9mZnNldD0iNjAlIiBzdG9wLWNvbG9yPSIjMTkxYzI0Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDAyYjM2Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9Im5lb24iIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIwIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBmMGZmIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZGRiN2ZmIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZzEpIi8+PHBhdGggZD0iTTAsNDAwIEwyNjAsMjAwIEwzODAsMjAwIEw2NDAsNDAwIFoiIGZpbGw9IiMwYzEzMWMiIHN0cm9rZT0iIzAwZGJlOSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMyMCIgeTE9IjIwMCIgeDI9IjMyMCIgeTI9IjQwMCIgc3Ryb2tlPSIjMDBmMGZmIiBzdHJva2Utd2lkdGg9IjQiIHN0cm9rZS1kYXNoYXJyYXk9IjE2LDE2Ii8+PHBvbHlnb24gcG9pbnRzPSIyODAsMzEwIDM2MCwzMTAgMzQ1LDM3MCAyOTUsMzcwIiBmaWxsPSIjMDBmMGZmIiBvcGFjaXR5PSIwLjkiLz48Y2lyY2xlIGN4PSIzMDAiIGN5PSIzNjUiIHI9IjUiIGZpbGw9IiNmZjAwNzciLz48Y2lyY2xlIGN4PSIzNDAiIGN5PSIzNjUiIHI9IjUiIGZpbGw9IiNmZjAwNzciLz48dGV4dCB4PSIzMjAiIHk9IjEyMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9InVybCgjbmVvbikiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSI0Ij5DWUJFUiBSQUNFUjwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjE2MCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzAwZGJlOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjMiPk5FTyBUT0tZTyAzRDwvdGV4dD48L3N2Zz4=",
+      title: "CyberRacer Neo",
+      group: "MINI GAME",
+      developer: "CloudArcade Engine",
+      genre: "racing",
+      tags: ["webgl3d", "controller", "singleplayer"],
+      categoryLabel: "Racing / Cyberpunk",
+      rating: 4.9,
+      playersOnline: "Active",
+      fps: "60 FPS Locked",
+      image: "./assets/images/cyber_racer.jpg",
+      description: "High-speed vertical pseudo-3D neon dodge racer with nitro boost, energy cores, and responsive steering.",
+      playableId: "cyber-racer",
+      hardwareBadge: "Built-in Canvas",
+      isBuiltin: true
+    },
+    {
+      id: "viper-grid-io",
+      fallbackImage: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImcyIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBiMTQxMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzA4MGMwYSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJuZW9uMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjAiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMGZmODgiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMGYwZmYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnMikiLz48Y2lyY2xlIGN4PSIyMDAiIGN5PSIyNzAiIHI9IjE4IiBmaWxsPSIjMDBmZjg4Ii8+PGNpcmNsZSBjeD0iMjQwIiBjeT0iMjYwIiByPSIxNyIgZmlsbD0iIzAwZjBmZiIvPjxjaXJjbGUgY3g9IjI4MCIgY3k9IjI4MCIgcj0iMTYiIGZpbGw9IiMwMGZmODgiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIzMDAiIHI9IjE1IiBmaWxsPSIjMDBmMGZmIi8+PGNpcmNsZSBjeD0iMzYwIiBjeT0iMjkwIiByPSIxNCIgZmlsbD0iIzAwZmY4OCIvPjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjI2MCIgcj0iMTIiIGZpbGw9IiNmZjAwNzciLz48dGV4dCB4PSIzMjAiIHk9IjEyMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9InVybCgjbmVvbjIpIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iNCI+VklQRVJHUklELklPPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMTYwIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMDBmZjg4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMyI+TkVPTiBTTElUSEVSIEFSRU5BPC90ZXh0Pjwvc3ZnPg==",
+      title: "ViperGrid.io",
+      group: "MINI GAME",
+      developer: "CloudArcade Engine",
+      genre: "io-games",
+      tags: ["touch", "multiplayer"],
+      categoryLabel: "IO Games / Arena",
+      rating: 4.8,
+      playersOnline: "Active",
+      fps: "Zero Lag",
+      image: "./assets/images/vipergrid.jpg",
+      description: "Slither through an infinite dark matrix grid, consuming radiant plasma cores and growing your cyber snake.",
+      playableId: "viper-grid",
+      hardwareBadge: "Built-in Canvas",
+      isBuiltin: true
+    },
+    {
+      id: "galactic-overdrive-84",
+      fallbackImage: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImczIiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBhMDUxOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzE0MGIyZSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJuZW9uMyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjAiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZjAwNzciLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZGI3ZmYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnMykiLz48cG9seWdvbiBwb2ludHM9IjMyMCwyNzAgMzQ1LDMzMCAzMjAsMzE1IDI5NSwzMzAiIGZpbGw9IiNkZGI3ZmYiIHN0cm9rZT0iIzAwZjBmZiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMwOCIgeTE9IjI3MCIgeDI9IjMwOCIgeTI9IjIxMCIgc3Ryb2tlPSIjMDBmMGZmIiBzdHJva2Utd2lkdGg9IjMiLz48bGluZSB4MT0iMzMyIiB5MT0iMjcwIiB4Mj0iMzMyIiB5Mj0iMjEwIiBzdHJva2U9IiMwMGYwZmYiIHN0cm9rZS13aWR0aD0iMyIvPjx0ZXh0IHg9IjMyMCIgeT0iMTIwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0idXJsKCNuZW9uMykiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIzIj5HQUxBQ1RJQyBPVkVSRFJJVkU8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSIxNjAiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNkZGI3ZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIzIj5SRVRSTyBTSE9PVCAnRU0gVVA8L3RleHQ+PC9zdmc+",
+      title: "Galactic Overdrive 84",
+      group: "MINI GAME",
+      developer: "CloudArcade Engine",
+      genre: "arcade",
+      tags: ["singleplayer", "controller"],
+      categoryLabel: "Arcade Classic",
+      rating: 4.9,
+      playersOnline: "Active",
+      fps: "60 FPS Locked",
+      image: "./assets/images/galactic_overdrive.jpg",
+      description: "Retro arcade bullet hell shoot-em-up shooting waves of descending cyber alien armadas.",
+      playableId: "galactic-overdrive",
+      hardwareBadge: "Built-in Canvas",
+      isBuiltin: true
+    },
+    {
+      id: "prismatics-zero",
+      fallbackImage: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9Imc0IiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBiMTAxYyIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzE2MTIyYyIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJuZW9uNCIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjAiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMGYwZmYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZjAwNzciLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnNCkiLz48cG9seWdvbiBwb2ludHM9IjMyMCwyMzAgMzYwLDI5MCAyODAsMjkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMGYwZmYiIHN0cm9rZS13aWR0aD0iMyIvPjxsaW5lIHgxPSIxODAiIHkxPSIyNjAiIHgyPSIzMDAiIHkyPSIyNjAiIHN0cm9rZT0iI2ZmMDA3NyIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjMwMCIgeTE9IjI2MCIgeDI9IjQ2MCIgeTI9IjM0MCIgc3Ryb2tlPSIjMDBmMGZmIiBzdHJva2Utd2lkdGg9IjQiLz48Y2lyY2xlIGN4PSI0NjAiIGN5PSIzNDAiIHI9IjE0IiBmaWxsPSIjMDBmMGZmIiBvcGFjaXR5PSIwLjgiLz48dGV4dCB4PSIzMjAiIHk9IjEyMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzQiIGZvbnQtd2VpZ2h0PSI5MDAiIGZpbGw9InVybCgjbmVvbjQpIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iNCI+UFJJU01BVElDUyBaRVJPPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMTYwIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMDBkYmU5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMyI+UVVBTlRVTSBMQVNFUiBPUFRJQ1M8L3RleHQ+PC9zdmc+",
+      title: "Prismatics Zero",
+      group: "MINI GAME",
+      developer: "CloudArcade Engine",
+      genre: "puzzle",
+      tags: ["singleplayer", "touch"],
+      categoryLabel: "Laser Puzzle",
+      rating: 5.0,
+      playersOnline: "Active",
+      fps: "Touch Ready",
+      image: "./assets/images/prismatics_zero.jpg",
+      description: "Rotate reflective prism mirrors to guide laser beams into dormant quantum reactor crystals.",
+      playableId: "prismatics-zero",
+      hardwareBadge: "Built-in Canvas",
+      isBuiltin: true
+    },
+    {
+      id: "neopuck-striker",
+      fallbackImage: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgNDAwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9Imc1IiB4MT0iMCIgeTE9IjAiIHgyPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzBiMGUxNCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzE5MTcyYyIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJuZW9uNSIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjAiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMGYwZmYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkZGI3ZmYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjQwMCIgZmlsbD0idXJsKCNnNSkiLz48ZWxsaXBzZSBjeD0iMzIwIiBjeT0iMjcwIiByeD0iNDAiIHJ5PSIxNCIgZmlsbD0iIzAwZjBmZiIgc3Ryb2tlPSIjZGJmY2ZmIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIyMzAiIGN5PSIyOTAiIHI9IjIyIiBmaWxsPSIjZmYwMDc3IiBzdHJva2U9IiNmZmNjZGQiIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjQxMCIgY3k9IjI1MCIgcj0iMjIiIGZpbGw9IiM2ZjAwYmUiIHN0cm9rZT0iI2RkYjdmZiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iMzIwIiB5PSIxMjAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjM0IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSJ1cmwoI25lb241KSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjQiPk5FT1BVQ0sgU1RSSUtFUjwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjE2MCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2RkYjdmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjMiPjEyMEhaIENZQkVSIEFJUiBIT0NLRVk8L3RleHQ+PC9zdmc+",
+      title: "NeoPuck Striker",
+      group: "MINI GAME",
+      developer: "CloudArcade Engine",
+      genre: "sports",
+      tags: ["touch", "controller"],
+      categoryLabel: "Air Hockey",
+      rating: 4.8,
+      playersOnline: "Active",
+      fps: "120 Hz Physics",
+      image: "./assets/images/neopuck_striker.jpg",
+      description: "Electrified air hockey on zero-friction neon table with speed curves against AI.",
+      playableId: "neopuck",
+      hardwareBadge: "Built-in Canvas",
+      isBuiltin: true
+    }
+  ];
+
+  window.GameStorage = {
+    getGames() {
+      return CLOUD_ARCADE_GAMES;
+    },
+    getGamesByGroup(groupName) {
+      return CLOUD_ARCADE_GAMES.filter(g => g.group === groupName);
+    }
+  };
+
+  // Real-Time Visitor Presence Tracker
+  class RealtimeVisitorPresence {
+    constructor() {
+      this.visitorId = 'v_' + Math.random().toString(36).substring(2, 9) + '_' + Date.now();
+      this.activeVisitors = new Set([this.visitorId]);
+      this.listeners = [];
+      this.ws = null;
+
+      this.initLocalPresence();
+      this.initNetworkPresence();
+    }
+
+    initLocalPresence() {
+      if ('BroadcastChannel' in window) {
+        this.channel = new BroadcastChannel('cloudarcade_visitors_sync');
+        this.channel.onmessage = (e) => {
+          if (e.data && e.data.type === 'ping') {
+            this.activeVisitors.add(e.data.id);
+            this.notify();
+          } else if (e.data && e.data.type === 'bye') {
+            this.activeVisitors.delete(e.data.id);
+            this.notify();
+          }
+        };
+
+        this.channel.postMessage({ type: 'ping', id: this.visitorId });
+
+        window.addEventListener('beforeunload', () => {
+          if (this.channel) {
+            this.channel.postMessage({ type: 'bye', id: this.visitorId });
+          }
+          this.removeLocalHeartbeat();
+        });
+      }
+
+      this.updateLocalHeartbeat();
+      setInterval(() => {
+        this.updateLocalHeartbeat();
+        if (this.channel) {
+          this.channel.postMessage({ type: 'ping', id: this.visitorId });
+        }
+      }, 2500);
+    }
+
+    updateLocalHeartbeat() {
+      const now = Date.now();
+      try {
+        let registry = JSON.parse(localStorage.getItem('ca_visitor_registry') || '{}');
+        registry[this.visitorId] = now;
+
+        const activeList = new Set();
+        activeList.add(this.visitorId);
+
+        for (const [id, lastSeen] of Object.entries(registry)) {
+          if (now - lastSeen < 6000) {
+            activeList.add(id);
+          } else {
+            delete registry[id];
+          }
+        }
+
+        localStorage.setItem('ca_visitor_registry', JSON.stringify(registry));
+        
+        for (const id of activeList) {
+          this.activeVisitors.add(id);
+        }
+        this.notify();
+      } catch (e) {}
+    }
+
+    removeLocalHeartbeat() {
+      try {
+        let registry = JSON.parse(localStorage.getItem('ca_visitor_registry') || '{}');
+        delete registry[this.visitorId];
+        localStorage.setItem('ca_visitor_registry', JSON.stringify(registry));
+      } catch (e) {}
+    }
+
+    initNetworkPresence() {
+      try {
+        const wsUrl = 'wss://broker.emqx.io:8084/mqtt';
+        if (window.WebSocket) {
+          this.ws = new WebSocket(wsUrl);
+          this.ws.onopen = () => {
+            this.sendNetworkPing();
+          };
+        }
+      } catch (err) {}
+    }
+
+    sendNetworkPing() {
+      if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+        setInterval(() => {
+          if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+            this.ws.send(JSON.stringify({ type: 'ping', site: 'cloudarcade', id: this.visitorId }));
+          }
+        }, 15000);
+      }
+    }
+
+    getVisitorCount() {
+      return Math.max(1, this.activeVisitors.size);
+    }
+
+    subscribe(callback) {
+      this.listeners.push(callback);
+      callback(this.getVisitorCount());
+    }
+
+    notify() {
+      const count = this.getVisitorCount();
+      this.listeners.forEach(cb => cb(count));
+    }
+  }
+
+  window.ArcadePresence = new RealtimeVisitorPresence();
+
+})();
+
+
+/* =========================================================
+   2. CloudArcade Canvas Game Engine & Audio Synth
+   ========================================================= */
+// CloudArcade - Playable Arcade Engine with Game-Specific Mobile Touch Controls
+(function() {
+  'use strict';
+
+  // Web Audio Synthesizer
+  class ArcadeAudio {
+    constructor() {
+      this.ctx = null;
+      this.muted = localStorage.getItem('ca_muted') === 'true';
+    }
+
+    init() {
+      if (!this.ctx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) {
+          this.ctx = new AudioContext();
+        }
+      }
+      if (this.ctx && this.ctx.state === 'suspended') {
+        this.ctx.resume();
+      }
+    }
+
+    toggleMute() {
+      this.muted = !this.muted;
+      localStorage.setItem('ca_muted', this.muted);
+      return this.muted;
+    }
+
+    playLaser() {
+      if (this.muted) return;
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(880, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(110, this.ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.15);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.15);
+    }
+
+    playScore() {
+      if (this.muted) return;
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(587.33, this.ctx.currentTime);
+      osc.frequency.setValueAtTime(880, this.ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.22);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.22);
+    }
+
+    playExplosion() {
+      if (this.muted) return;
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(140, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(30, this.ctx.currentTime + 0.35);
+      gain.gain.setValueAtTime(0.25, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.35);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.35);
+    }
+
+    playCoin() {
+      if (this.muted) return;
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(987.77, this.ctx.currentTime);
+      osc.frequency.setValueAtTime(1318.51, this.ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.28);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.28);
+    }
+
+    playClick() {
+      if (this.muted) return;
+      this.init();
+      if (!this.ctx) return;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(400, this.ctx.currentTime);
+      gain.gain.setValueAtTime(0.05, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.04);
+    }
+  }
+
+  const sound = new ArcadeAudio();
+  window.ArcadeSound = sound;
+
+  // Main Arcade Manager
+  window.ArcadeManager = {
+    currentGame: null,
+    animationFrameId: null,
+    canvas: null,
+    ctx: null,
+    gameData: null,
+    score: 0,
+    highScore: 0,
+    isPaused: false,
+    keys: {},
+    touchControlsVisible: true,
+    autoFireActive: false,
+
+    init() {
+      this.canvas = document.getElementById('arcadeCanvas');
+      if (this.canvas) {
+        this.ctx = this.canvas.getContext('2d');
+      }
+      this.setupGlobalControls();
+    },
+
+    setupGlobalControls() {
+      window.addEventListener('keydown', (e) => {
+        this.keys[e.code] = true;
+        if (e.code === 'KeyP') this.togglePause();
+        if (e.code === 'Escape' && document.getElementById('arcadeModal')?.classList.contains('flex')) {
+          this.closeModal();
+        }
+      });
+
+      window.addEventListener('keyup', (e) => {
+        this.keys[e.code] = false;
+      });
+
+      if (this.canvas) {
+        // Direct Canvas Pointer/Touch Tracking
+        const getCanvasCoord = (e) => {
+          const rect = this.canvas.getBoundingClientRect();
+          const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          return {
+            x: (clientX - rect.left) * (this.canvas.width / rect.width),
+            y: (clientY - rect.top) * (this.canvas.height / rect.height)
+          };
+        };
+
+        const handlePointer = (e) => {
+          if (!this.currentGame) return;
+          const pos = getCanvasCoord(e);
+          this.mouseX = pos.x;
+          this.mouseY = pos.y;
+          if (this.currentGame.handlePointerMove) {
+            this.currentGame.handlePointerMove(pos.x, pos.y);
+          }
+        };
+
+        this.canvas.addEventListener('mousemove', handlePointer);
+        this.canvas.addEventListener('touchmove', (e) => {
+          e.preventDefault();
+          handlePointer(e);
+        }, { passive: false });
+
+        this.canvas.addEventListener('click', (e) => {
+          if (!this.currentGame) return;
+          const pos = getCanvasCoord(e);
+          if (this.currentGame.handleClick) {
+            this.currentGame.handleClick(pos.x, pos.y);
+          }
+        });
+
+        this.canvas.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          if (!this.currentGame) return;
+          const pos = getCanvasCoord(e);
+          if (this.currentGame.handleTouchStart) {
+            this.currentGame.handleTouchStart(pos.x, pos.y);
+          }
+          if (this.currentGame.handleClick) {
+            this.currentGame.handleClick(pos.x, pos.y);
+          }
+        }, { passive: false });
+      }
+
+      // Virtual Controls visibility toggle button
+      const toggleTouchBtn = document.getElementById('toggleVirtualControlsBtn');
+      if (toggleTouchBtn) {
+        toggleTouchBtn.addEventListener('click', () => {
+          const container = document.getElementById('touchControlsContainer');
+          if (!container) return;
+          this.touchControlsVisible = !this.touchControlsVisible;
+          if (this.touchControlsVisible) {
+            container.classList.remove('hidden');
+            container.classList.add('flex');
+            toggleTouchBtn.classList.add('text-primary-container');
+          } else {
+            container.classList.add('hidden');
+            container.classList.remove('flex');
+            toggleTouchBtn.classList.remove('text-primary-container');
+          }
+        });
+      }
+    },
+
+    // Render Game-Specific Touch Controls
+    renderGameSpecificControls(playableType) {
+      const container = document.getElementById('touchControlsContainer');
+      const descEl = document.getElementById('arcadeGameDesc');
+      if (!container) return;
+
+      // Always show on touch screens or mobile
+      container.classList.remove('hidden');
+      container.classList.add('flex');
+      this.touchControlsVisible = true;
+
+      if (playableType === 'cyber-racer') {
+        if (descEl) descEl.textContent = 'Touch: Use ◀ / ▶ to steer, ⚡ NITRO for boost. Or touch road sides directly.';
+        container.innerHTML = `
+          <!-- Left: Steering Pedals -->
+          <div class="pointer-events-auto flex items-center gap-2">
+            <button id="ctrlSteerLeft" type="button" class="touch-btn w-14 h-14 sm:w-16 sm:h-16 flex flex-col items-center justify-center shadow-xl">
+              <span class="material-symbols-outlined text-2xl text-primary">chevron_left</span>
+              <span class="text-[9px] font-bold font-mono text-outline">LEFT</span>
+            </button>
+            <button id="ctrlSteerRight" type="button" class="touch-btn w-14 h-14 sm:w-16 sm:h-16 flex flex-col items-center justify-center shadow-xl">
+              <span class="material-symbols-outlined text-2xl text-primary">chevron_right</span>
+              <span class="text-[9px] font-bold font-mono text-outline">RIGHT</span>
+            </button>
+          </div>
+
+          <!-- Right: Nitro & Brake -->
+          <div class="pointer-events-auto flex items-center gap-2">
+            <button id="ctrlBrake" type="button" class="touch-btn w-13 h-13 sm:w-14 sm:h-14 p-2 flex flex-col items-center justify-center text-[10px] font-bold font-mono shadow-xl border-outline">
+              <span class="material-symbols-outlined text-base text-outline">arrow_downward</span>
+              <span class="text-[8px]">BRAKE</span>
+            </button>
+            <button id="ctrlNitro" type="button" class="touch-btn touch-btn-action w-16 h-16 sm:w-18 sm:h-18 p-2 flex flex-col items-center justify-center text-xs font-bold font-mono shadow-2xl text-primary-container border-primary-container">
+              <span class="material-symbols-outlined text-2xl text-primary-container animate-pulse">local_fire_department</span>
+              <span class="text-[9px]">NITRO</span>
+            </button>
+          </div>
+        `;
+
+        this.bindTouchButton('ctrlSteerLeft', 'ArrowLeft');
+        this.bindTouchButton('ctrlSteerRight', 'ArrowRight');
+        this.bindTouchButton('ctrlBrake', 'ArrowDown');
+        this.bindTouchButton('ctrlNitro', 'ShiftLeft');
+
+      } else if (playableType === 'viper-grid') {
+        if (descEl) descEl.textContent = 'Touch: Use 4-Way D-Pad or tap anywhere on grid to direct snake. ⚡ SPRINT for speed.';
+        container.innerHTML = `
+          <!-- Left: 4-Way D-Pad -->
+          <div class="pointer-events-auto relative w-32 h-32 flex items-center justify-center">
+            <div class="absolute w-10 h-10 rounded-full bg-surface-container/60 border border-primary-container/30"></div>
+            <button id="ctrlViperUp" type="button" class="touch-btn absolute top-0 w-11 h-11 shadow-lg">
+              <span class="material-symbols-outlined text-xl">expand_less</span>
+            </button>
+            <button id="ctrlViperDown" type="button" class="touch-btn absolute bottom-0 w-11 h-11 shadow-lg">
+              <span class="material-symbols-outlined text-xl">expand_more</span>
+            </button>
+            <button id="ctrlViperLeft" type="button" class="touch-btn absolute left-0 w-11 h-11 shadow-lg">
+              <span class="material-symbols-outlined text-xl">chevron_left</span>
+            </button>
+            <button id="ctrlViperRight" type="button" class="touch-btn absolute right-0 w-11 h-11 shadow-lg">
+              <span class="material-symbols-outlined text-xl">chevron_right</span>
+            </button>
+          </div>
+
+          <!-- Right: Sprint Boost -->
+          <div class="pointer-events-auto flex items-center">
+            <button id="ctrlViperSprint" type="button" class="touch-btn touch-btn-action w-16 h-16 sm:w-18 sm:h-18 flex flex-col items-center justify-center shadow-xl text-primary-container border-primary-container">
+              <span class="material-symbols-outlined text-2xl">bolt</span>
+              <span class="text-[9px] font-bold font-mono">SPRINT</span>
+            </button>
+          </div>
+        `;
+
+        this.bindTouchButton('ctrlViperUp', 'ArrowUp');
+        this.bindTouchButton('ctrlViperDown', 'ArrowDown');
+        this.bindTouchButton('ctrlViperLeft', 'ArrowLeft');
+        this.bindTouchButton('ctrlViperRight', 'ArrowRight');
+        this.bindTouchButton('ctrlViperSprint', 'Space');
+
+      } else if (playableType === 'galactic-overdrive') {
+        if (descEl) descEl.textContent = 'Touch: Move with ◀ / ▶ or drag ship directly. Tap 💥 FIRE to blast aliens.';
+        container.innerHTML = `
+          <!-- Left: Move Controls -->
+          <div class="pointer-events-auto flex items-center gap-2">
+            <button id="ctrlShmupLeft" type="button" class="touch-btn w-14 h-14 sm:w-16 sm:h-16 flex flex-col items-center justify-center shadow-xl">
+              <span class="material-symbols-outlined text-2xl text-primary">chevron_left</span>
+              <span class="text-[9px] font-bold font-mono text-outline">LEFT</span>
+            </button>
+            <button id="ctrlShmupRight" type="button" class="touch-btn w-14 h-14 sm:w-16 sm:h-16 flex flex-col items-center justify-center shadow-xl">
+              <span class="material-symbols-outlined text-2xl text-primary">chevron_right</span>
+              <span class="text-[9px] font-bold font-mono text-outline">RIGHT</span>
+            </button>
+          </div>
+
+          <!-- Right: Fire & Auto-fire -->
+          <div class="pointer-events-auto flex items-center gap-2">
+            <button id="ctrlAutoFireToggle" type="button" class="touch-btn w-13 h-13 sm:w-14 sm:h-14 p-2 flex flex-col items-center justify-center text-[10px] font-bold font-mono shadow-xl border-secondary text-secondary">
+              <span class="material-symbols-outlined text-base">smart_toy</span>
+              <span class="text-[8px]">AUTO</span>
+            </button>
+            <button id="ctrlShmupFire" type="button" class="touch-btn touch-btn-action w-16 h-16 sm:w-18 sm:h-18 flex flex-col items-center justify-center shadow-xl text-primary-container border-primary-container">
+              <span class="material-symbols-outlined text-2xl">local_fire_department</span>
+              <span class="text-[9px] font-bold font-mono">FIRE</span>
+            </button>
+          </div>
+        `;
+
+        this.bindTouchButton('ctrlShmupLeft', 'ArrowLeft');
+        this.bindTouchButton('ctrlShmupRight', 'ArrowRight');
+        this.bindTouchButton('ctrlShmupFire', 'Space');
+
+        const autoBtn = document.getElementById('ctrlAutoFireToggle');
+        if (autoBtn) {
+          autoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.autoFireActive = !this.autoFireActive;
+            autoBtn.classList.toggle('bg-secondary/30');
+            sound.playClick();
+          });
+        }
+
+      } else if (playableType === 'prismatics-zero') {
+        if (descEl) descEl.textContent = 'Touch: Tap crystal mirrors directly on canvas to rotate laser reflection angle.';
+        container.innerHTML = `
+          <!-- Bottom Centered Optics Helper HUD -->
+          <div class="pointer-events-auto w-full flex items-center justify-between px-2">
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container-low/90 backdrop-blur-md border border-primary-container/40 text-primary-container text-xs font-mono font-bold shadow-lg">
+              <span class="material-symbols-outlined text-base animate-pulse">touch_app</span>
+              <span>TAP MIRRORS ON CANVAS TO ROTATE</span>
+            </div>
+            <button id="ctrlResetPrism" type="button" class="touch-btn px-4 py-2 text-xs font-mono font-bold flex items-center gap-1 shadow-lg text-secondary border-secondary">
+              <span class="material-symbols-outlined text-sm">replay</span>
+              <span>RESET ANGLES</span>
+            </button>
+          </div>
+        `;
+
+        const resetBtn = document.getElementById('ctrlResetPrism');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (this.currentGame && this.currentGame.init) {
+              this.currentGame.init();
+              sound.playClick();
+            }
+          });
+        }
+
+      } else if (playableType === 'neopuck') {
+        if (descEl) descEl.textContent = 'Touch: Drag your blue paddle directly with finger on the table to smash the puck!';
+        container.innerHTML = `
+          <!-- Touch Direct Air Hockey Drag Helper -->
+          <div class="pointer-events-auto w-full flex items-center justify-between px-2">
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-surface-container-low/90 backdrop-blur-md border border-primary-container/40 text-primary-container text-xs font-mono font-bold shadow-lg">
+              <span class="material-symbols-outlined text-base">pan_tool</span>
+              <span>DRAG PADDLE DIRECTLY WITH FINGER</span>
+            </div>
+            <button id="ctrlPuckSmash" type="button" class="touch-btn touch-btn-action px-4 py-2 text-xs font-mono font-bold flex items-center gap-1 shadow-lg text-primary-container border-primary-container">
+              <span class="material-symbols-outlined text-base">flash_on</span>
+              <span>SUPER SMASH</span>
+            </button>
+          </div>
+        `;
+
+        const smashBtn = document.getElementById('ctrlPuckSmash');
+        if (smashBtn) {
+          smashBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (this.currentGame && this.currentGame.triggerSuperSmash) {
+              this.currentGame.triggerSuperSmash();
+            }
+          });
+        }
+      }
+    },
+
+    bindTouchButton(btnId, keyCode) {
+      const el = document.getElementById(btnId);
+      if (!el) return;
+
+      const handlePress = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.keys[keyCode] = true;
+        sound.playClick();
+      };
+
+      const handleRelease = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.keys[keyCode] = false;
+      };
+
+      el.addEventListener('touchstart', handlePress, { passive: false });
+      el.addEventListener('touchend', handleRelease, { passive: false });
+      el.addEventListener('touchcancel', handleRelease, { passive: false });
+      el.addEventListener('mousedown', handlePress);
+      el.addEventListener('mouseup', handleRelease);
+      el.addEventListener('mouseleave', handleRelease);
+    },
+
+    openGame(game) {
+      this.gameData = game;
+      const modal = document.getElementById('arcadeModal');
+      const titleEl = document.getElementById('arcadeGameTitle');
+      const descEl = document.getElementById('arcadeGameDesc');
+      const badgeEl = document.getElementById('arcadeGameBadge');
+
+      if (titleEl) titleEl.textContent = game.title;
+      if (descEl) descEl.textContent = game.description;
+      if (badgeEl) badgeEl.textContent = game.group || 'MINI GAME';
+
+      this.score = 0;
+      this.highScore = parseInt(localStorage.getItem(`ca_hs_${game.id}`) || '0', 10);
+      this.updateScoreUI();
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+
+      sound.playCoin();
+
+      if (this.canvas) {
+        this.canvas.width = 800;
+        this.canvas.height = 500;
+      }
+
+      const playableType = game.playableId || 'cyber-racer';
+      if (playableType === 'viper-grid') {
+        this.currentGame = new ViperGridGame(this);
+      } else if (playableType === 'galactic-overdrive') {
+        this.currentGame = new GalacticOverdriveGame(this);
+      } else if (playableType === 'prismatics-zero') {
+        this.currentGame = new PrismaticsZeroGame(this);
+      } else if (playableType === 'neopuck') {
+        this.currentGame = new NeoPuckGame(this);
+      } else {
+        this.currentGame = new CyberRacerGame(this);
+      }
+
+      this.isPaused = false;
+      this.currentGame.init();
+
+      // Render custom controls specifically for this game
+      this.renderGameSpecificControls(playableType);
+
+      if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+      this.loop = this.loop.bind(this);
+      this.animationFrameId = requestAnimationFrame(this.loop);
+    },
+
+    closeModal() {
+      const modal = document.getElementById('arcadeModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+      document.body.style.overflow = '';
+      if (this.animationFrameId) {
+        cancelAnimationFrame(this.animationFrameId);
+        this.animationFrameId = null;
+      }
+      this.currentGame = null;
+    },
+
+    togglePause() {
+      this.isPaused = !this.isPaused;
+      const pauseBtn = document.getElementById('arcadePauseBtn');
+      if (pauseBtn) {
+        pauseBtn.innerHTML = this.isPaused
+          ? '<span class="material-symbols-outlined text-base sm:text-lg">play_arrow</span>'
+          : '<span class="material-symbols-outlined text-base sm:text-lg">pause</span>';
+      }
+    },
+
+    restart() {
+      if (this.currentGame) {
+        this.score = 0;
+        this.updateScoreUI();
+        this.currentGame.init();
+        sound.playCoin();
+      }
+    },
+
+    addScore(points) {
+      this.score += points;
+      if (this.score > this.highScore) {
+        this.highScore = this.score;
+        if (this.gameData) {
+          localStorage.setItem(`ca_hs_${this.gameData.id}`, this.highScore);
+        }
+      }
+      this.updateScoreUI();
+    },
+
+    updateScoreUI() {
+      const curEl = document.getElementById('arcadeCurrentScore');
+      const highEl = document.getElementById('arcadeHighScore');
+      if (curEl) curEl.textContent = this.score.toLocaleString();
+      if (highEl) highEl.textContent = this.highScore.toLocaleString();
+    },
+
+    loop() {
+      if (!this.isPaused && this.currentGame) {
+        this.currentGame.update();
+        this.currentGame.draw(this.ctx);
+      } else if (this.isPaused) {
+        this.drawPauseOverlay();
+      }
+      this.animationFrameId = requestAnimationFrame(this.loop);
+    },
+
+    drawPauseOverlay() {
+      this.ctx.fillStyle = 'rgba(16, 19, 26, 0.75)';
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.fillStyle = '#00f0ff';
+      this.ctx.font = 'bold 32px "Sora", sans-serif';
+      this.ctx.textAlign = 'center';
+      this.ctx.fillText('PAUSED', this.canvas.width / 2, this.canvas.height / 2);
+      this.ctx.font = '14px "Plus Jakarta Sans", sans-serif';
+      this.ctx.fillStyle = '#e1e2eb';
+      this.ctx.fillText('Press [P] or Pause Button to Resume', this.canvas.width / 2, this.canvas.height / 2 + 35);
+    }
+  };
+
+  // --- GAME 1: CyberRacer Neo ---
+  class CyberRacerGame {
+    constructor(engine) { this.engine = engine; }
+    init() {
+      this.player = { x: 400, y: 420, width: 44, height: 64, speed: 6, nitro: 100 };
+      this.obstacles = [];
+      this.energyCores = [];
+      this.particles = [];
+      this.gridOffset = 0;
+      this.speedMultiplier = 1;
+      this.gameOver = false;
+      this.spawnTimer = 0;
+    }
+    handlePointerMove(x, y) {
+      if (!this.gameOver) {
+        // Direct finger sliding on touch screen
+        this.player.x = Math.max(140, Math.min(660 - this.player.width, x - this.player.width / 2));
+      }
+    }
+    update() {
+      if (this.gameOver) {
+        if (this.engine.keys['Space'] || this.engine.keys['KeyR']) this.init();
+        return;
+      }
+      const keys = this.engine.keys;
+      const isNitro = keys['ShiftLeft'] || keys['ShiftRight'] || keys['KeyX'];
+      const currentSpeed = isNitro && this.player.nitro > 0 ? this.player.speed * 1.6 : this.player.speed;
+      if (isNitro && this.player.nitro > 0) {
+        this.player.nitro -= 0.5;
+        this.speedMultiplier = 1.8;
+      } else {
+        if (this.player.nitro < 100) this.player.nitro += 0.15;
+        this.speedMultiplier = 1;
+      }
+      if (keys['ArrowLeft'] || keys['KeyA']) this.player.x -= currentSpeed;
+      if (keys['ArrowRight'] || keys['KeyD']) this.player.x += currentSpeed;
+      if (keys['ArrowUp'] || keys['KeyW']) this.player.y = Math.max(260, this.player.y - 3);
+      if (keys['ArrowDown'] || keys['KeyS']) this.player.y = Math.min(440, this.player.y + 3);
+      this.player.x = Math.max(140, Math.min(660 - this.player.width, this.player.x));
+      this.gridOffset = (this.gridOffset + 8 * this.speedMultiplier) % 40;
+      this.spawnTimer++;
+      if (this.spawnTimer % 45 === 0) {
+        this.obstacles.push({
+          x: 160 + Math.random() * 440,
+          y: -70, width: 40, height: 60,
+          speed: 4 + Math.random() * 3,
+          color: Math.random() > 0.5 ? '#ff0055' : '#b4146e'
+        });
+      }
+      if (this.spawnTimer % 70 === 0) {
+        this.energyCores.push({ x: 180 + Math.random() * 400, y: -30, radius: 12, pulse: 0 });
+      }
+      for (let i = this.obstacles.length - 1; i >= 0; i--) {
+        const obs = this.obstacles[i];
+        obs.y += obs.speed * this.speedMultiplier;
+        if (this.player.x < obs.x + obs.width && this.player.x + this.player.width > obs.x &&
+            this.player.y < obs.y + obs.height && this.player.y + this.player.height > obs.y) {
+          this.gameOver = true;
+          sound.playExplosion();
+          this.createExplosion(this.player.x + 20, this.player.y + 30, '#00f0ff');
+          break;
+        }
+        if (obs.y > 520) {
+          this.obstacles.splice(i, 1);
+          this.engine.addScore(10 * Math.round(this.speedMultiplier));
+        }
+      }
+      for (let i = this.energyCores.length - 1; i >= 0; i--) {
+        const core = this.energyCores[i];
+        core.y += 5 * this.speedMultiplier;
+        core.pulse += 0.1;
+        const dist = Math.hypot((this.player.x + this.player.width / 2) - core.x, (this.player.y + this.player.height / 2) - core.y);
+        if (dist < 32) {
+          this.energyCores.splice(i, 1);
+          this.engine.addScore(150);
+          this.player.nitro = Math.min(100, this.player.nitro + 25);
+          sound.playScore();
+          this.createExplosion(core.x, core.y, '#00f0ff');
+          continue;
+        }
+        if (core.y > 520) this.energyCores.splice(i, 1);
+      }
+      for (let i = this.particles.length - 1; i >= 0; i--) {
+        const p = this.particles[i];
+        p.x += p.vx; p.y += p.vy; p.life -= 0.04;
+        if (p.life <= 0) this.particles.splice(i, 1);
+      }
+    }
+    createExplosion(x, y, color) {
+      for (let i = 0; i < 20; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const spd = 2 + Math.random() * 5;
+        this.particles.push({ x, y, vx: Math.cos(angle) * spd, vy: Math.sin(angle) * spd, color: color || '#ff0055', life: 1 });
+      }
+    }
+    draw(ctx) {
+      ctx.fillStyle = '#10131a';
+      ctx.fillRect(0, 0, 800, 500);
+      const skyGrad = ctx.createLinearGradient(0, 0, 0, 240);
+      skyGrad.addColorStop(0, '#0b0e14'); skyGrad.addColorStop(1, '#1d1430');
+      ctx.fillStyle = skyGrad; ctx.fillRect(0, 0, 800, 240);
+      ctx.fillStyle = '#161924';
+      ctx.fillRect(140, 130, 60, 110); ctx.fillRect(490, 140, 55, 100); ctx.fillRect(580, 120, 80, 120);
+      ctx.beginPath();
+      ctx.moveTo(320, 240); ctx.lineTo(480, 240); ctx.lineTo(720, 500); ctx.lineTo(80, 500);
+      ctx.closePath(); ctx.fillStyle = '#141720'; ctx.fill();
+      ctx.strokeStyle = '#00f0ff'; ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(320, 240); ctx.lineTo(80, 500); ctx.moveTo(480, 240); ctx.lineTo(720, 500);
+      ctx.stroke();
+      ctx.strokeStyle = 'rgba(0, 240, 255, 0.25)'; ctx.lineWidth = 1.5;
+      for (let y = 240 + this.gridOffset; y < 500; y += 35) {
+        const factor = (y - 240) / 260;
+        const lx = 320 - (320 - 80) * factor; const rx = 480 + (720 - 480) * factor;
+        ctx.beginPath(); ctx.moveTo(lx, y); ctx.lineTo(rx, y); ctx.stroke();
+      }
+      this.energyCores.forEach(core => {
+        ctx.save(); ctx.shadowColor = '#00f0ff'; ctx.shadowBlur = 15; ctx.fillStyle = '#00f0ff';
+        ctx.beginPath(); ctx.arc(core.x, core.y, core.radius + Math.sin(core.pulse) * 2, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      });
+      this.obstacles.forEach(obs => {
+        ctx.save(); ctx.shadowColor = obs.color; ctx.shadowBlur = 12; ctx.fillStyle = obs.color;
+        ctx.beginPath(); ctx.roundRect(obs.x, obs.y, obs.width, obs.height, 6); ctx.fill();
+        ctx.restore();
+      });
+      if (!this.gameOver) {
+        ctx.save(); ctx.shadowColor = '#00f0ff'; ctx.shadowBlur = 20;
+        if (this.speedMultiplier > 1) {
+          ctx.fillStyle = '#00f0ff';
+          ctx.fillRect(this.player.x + 8, this.player.y + this.player.height, 6, 18);
+          ctx.fillRect(this.player.x + this.player.width - 14, this.player.y + this.player.height, 6, 18);
+        }
+        ctx.fillStyle = '#00f0ff';
+        ctx.beginPath(); ctx.roundRect(this.player.x, this.player.y, this.player.width, this.player.height, 8); ctx.fill();
+        ctx.fillStyle = '#10131a';
+        ctx.fillRect(this.player.x + 6, this.player.y + 12, this.player.width - 12, 22);
+        ctx.restore();
+      }
+      this.particles.forEach(p => {
+        ctx.fillStyle = p.color; ctx.globalAlpha = p.life;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI * 2); ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      if (this.gameOver) {
+        ctx.fillStyle = 'rgba(11, 14, 20, 0.85)'; ctx.fillRect(0, 0, 800, 500);
+        ctx.fillStyle = '#ff0055'; ctx.font = 'bold 36px "Sora", sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('VEHICLE CRASHED', 400, 220);
+        ctx.fillStyle = '#00f0ff'; ctx.font = 'bold 16px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('Press [SPACE] or Tap Screen to Restart', 400, 280);
+      }
+    }
+  }
+
+  // --- GAME 2: ViperGrid.io ---
+  class ViperGridGame {
+    constructor(engine) { this.engine = engine; }
+    init() {
+      this.gridSize = 16; this.cols = 50; this.rows = 31;
+      this.snake = [{ x: 25, y: 15 }, { x: 24, y: 15 }, { x: 23, y: 15 }];
+      this.dir = { x: 1, y: 0 }; this.nextDir = { x: 1, y: 0 };
+      this.food = []; this.spawnFood(10);
+      this.gameOver = false; this.tickCount = 0;
+    }
+    handleClick(x, y) {
+      // Tap anywhere on the grid to change direction directly towards touch point
+      if (this.snake.length > 0) {
+        const head = this.snake[0];
+        const headPixelX = head.x * this.gridSize;
+        const headPixelY = head.y * this.gridSize;
+        const dx = x - headPixelX;
+        const dy = y - headPixelY;
+        if (Math.abs(dx) > Math.abs(dy)) {
+          if (dx > 0 && this.dir.x === 0) this.nextDir = { x: 1, y: 0 };
+          else if (dx < 0 && this.dir.x === 0) this.nextDir = { x: -1, y: 0 };
+        } else {
+          if (dy > 0 && this.dir.y === 0) this.nextDir = { x: 0, y: 1 };
+          else if (dy < 0 && this.dir.y === 0) this.nextDir = { x: 0, y: -1 };
+        }
+      }
+    }
+    spawnFood(count) {
+      for (let i = 0; i < count; i++) {
+        this.food.push({
+          x: Math.floor(Math.random() * (this.cols - 2)) + 1,
+          y: Math.floor(Math.random() * (this.rows - 2)) + 1,
+          color: Math.random() > 0.4 ? '#00f0ff' : '#ddb7ff'
+        });
+      }
+    }
+    update() {
+      if (this.gameOver) {
+        if (this.engine.keys['Space'] || this.engine.keys['KeyR']) this.init();
+        return;
+      }
+      const keys = this.engine.keys;
+      if ((keys['ArrowUp'] || keys['KeyW']) && this.dir.y === 0) this.nextDir = { x: 0, y: -1 };
+      if ((keys['ArrowDown'] || keys['KeyS']) && this.dir.y === 0) this.nextDir = { x: 0, y: 1 };
+      if ((keys['ArrowLeft'] || keys['KeyA']) && this.dir.x === 0) this.nextDir = { x: -1, y: 0 };
+      if ((keys['ArrowRight'] || keys['KeyD']) && this.dir.x === 0) this.nextDir = { x: 1, y: 0 };
+      this.tickCount++;
+      const speedInterval = keys['Space'] || keys['ShiftLeft'] ? 2 : 5;
+      if (this.tickCount % speedInterval !== 0) return;
+      this.dir = this.nextDir;
+      const head = { x: this.snake[0].x + this.dir.x, y: this.snake[0].y + this.dir.y };
+      if (head.x < 0 || head.x >= this.cols || head.y < 0 || head.y >= this.rows) {
+        this.gameOver = true; sound.playExplosion(); return;
+      }
+      for (let seg of this.snake) {
+        if (seg.x === head.x && seg.y === head.y) {
+          this.gameOver = true; sound.playExplosion(); return;
+        }
+      }
+      this.snake.unshift(head);
+      let ate = false;
+      for (let i = 0; i < this.food.length; i++) {
+        if (this.food[i].x === head.x && this.food[i].y === head.y) {
+          this.food.splice(i, 1);
+          this.engine.addScore(100);
+          sound.playScore();
+          this.spawnFood(1);
+          ate = true;
+          break;
+        }
+      }
+      if (!ate) this.snake.pop();
+    }
+    draw(ctx) {
+      ctx.fillStyle = '#10131a'; ctx.fillRect(0, 0, 800, 500);
+      this.food.forEach(f => {
+        ctx.save(); ctx.shadowColor = f.color; ctx.shadowBlur = 10; ctx.fillStyle = f.color;
+        ctx.beginPath(); ctx.arc(f.x * this.gridSize + 8, f.y * this.gridSize + 8, 5, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      });
+      this.snake.forEach((seg, index) => {
+        ctx.fillStyle = index === 0 ? '#00f0ff' : '#ddb7ff';
+        ctx.beginPath(); ctx.roundRect(seg.x * this.gridSize + 1, seg.y * this.gridSize + 1, this.gridSize - 2, this.gridSize - 2, 4); ctx.fill();
+      });
+      if (this.gameOver) {
+        ctx.fillStyle = 'rgba(16, 19, 26, 0.85)'; ctx.fillRect(0, 0, 800, 500);
+        ctx.fillStyle = '#ff0055'; ctx.font = 'bold 36px "Sora", sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('VIPER ELIMINATED', 400, 220);
+        ctx.fillStyle = '#00f0ff'; ctx.font = 'bold 16px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText('Press [SPACE] or Tap Screen to Respawn', 400, 280);
+      }
+    }
+  }
+
+  // --- GAME 3: Galactic Overdrive ---
+  class GalacticOverdriveGame {
+    constructor(engine) { this.engine = engine; }
+    init() {
+      this.player = { x: 375, y: 430, width: 48, height: 48, speed: 7 };
+      this.lasers = []; this.aliens = []; this.alienLasers = []; this.particles = [];
+      this.shootCooldown = 0; this.gameOver = false; this.wave = 1;
+      this.spawnWave();
+    }
+    handlePointerMove(x, y) {
+      if (!this.gameOver) {
+        this.player.x = Math.max(20, Math.min(780 - this.player.width, x - this.player.width / 2));
+      }
+    }
+    spawnWave() {
+      this.aliens = [];
+      for (let r = 0; r < 3; r++) {
+        for (let c = 0; c < 8; c++) {
+          this.aliens.push({ x: 100 + c * 75, y: 50 + r * 45, width: 38, height: 28, color: r === 0 ? '#ff0055' : '#00f0ff' });
+        }
+      }
+      this.alienDir = 1; this.alienSpeed = 1.5;
+    }
+    update() {
+      if (this.gameOver) {
+        if (this.engine.keys['Space'] || this.engine.keys['KeyR']) this.init();
+        return;
+      }
+      const keys = this.engine.keys;
+      if (keys['ArrowLeft'] || keys['KeyA']) this.player.x -= this.player.speed;
+      if (keys['ArrowRight'] || keys['KeyD']) this.player.x += this.player.speed;
+      this.player.x = Math.max(20, Math.min(780 - this.player.width, this.player.x));
+      if (this.shootCooldown > 0) this.shootCooldown--;
+      const shouldShoot = keys['Space'] || keys['KeyZ'] || this.engine.autoFireActive;
+      if (shouldShoot && this.shootCooldown === 0) {
+        this.lasers.push({ x: this.player.x + 10, y: this.player.y, speed: 12 });
+        this.lasers.push({ x: this.player.x + this.player.width - 14, y: this.player.y, speed: 12 });
+        sound.playLaser();
+        this.shootCooldown = 12;
+      }
+      for (let i = this.lasers.length - 1; i >= 0; i--) {
+        const l = this.lasers[i];
+        l.y -= l.speed;
+        if (l.y < -10) { this.lasers.splice(i, 1); continue; }
+        for (let j = this.aliens.length - 1; j >= 0; j--) {
+          const a = this.aliens[j];
+          if (l.x > a.x && l.x < a.x + a.width && l.y > a.y && l.y < a.y + a.height) {
+            this.lasers.splice(i, 1); this.aliens.splice(j, 1);
+            this.engine.addScore(50); sound.playScore();
+            break;
+          }
+        }
+      }
+      let hitEdge = false;
+      for (let a of this.aliens) {
+        a.x += this.alienDir * this.alienSpeed;
+        if (a.x < 30 || a.x + a.width > 770) hitEdge = true;
+      }
+      if (hitEdge) {
+        this.alienDir *= -1;
+        for (let a of this.aliens) a.y += 18;
+      }
+      if (this.aliens.length === 0) {
+        this.wave++; this.engine.addScore(500); sound.playCoin(); this.spawnWave();
+      }
+    }
+    draw(ctx) {
+      ctx.fillStyle = '#0b0e14'; ctx.fillRect(0, 0, 800, 500);
+      ctx.fillStyle = '#00f0ff';
+      this.lasers.forEach(l => ctx.fillRect(l.x, l.y, 4, 14));
+      this.aliens.forEach(a => {
+        ctx.fillStyle = a.color;
+        ctx.beginPath(); ctx.roundRect(a.x, a.y, a.width, a.height, 4); ctx.fill();
+      });
+      ctx.fillStyle = '#00f0ff';
+      ctx.beginPath();
+      ctx.moveTo(this.player.x + 24, this.player.y);
+      ctx.lineTo(this.player.x + 48, this.player.y + 48);
+      ctx.lineTo(this.player.x, this.player.y + 48);
+      ctx.closePath(); ctx.fill();
+      if (this.gameOver) {
+        ctx.fillStyle = 'rgba(11, 14, 20, 0.85)'; ctx.fillRect(0, 0, 800, 500);
+        ctx.fillStyle = '#ff0055'; ctx.font = 'bold 36px "Sora", sans-serif'; ctx.textAlign = 'center';
+        ctx.fillText('SYSTEM OVERRUN', 400, 220);
+      }
+    }
+  }
+
+  // --- GAME 4: Prismatics Zero ---
+  class PrismaticsZeroGame {
+    constructor(engine) { this.engine = engine; }
+    init() {
+      this.mirrors = [{ x: 260, y: 180, angle: 45 }, { x: 520, y: 180, angle: 135 }, { x: 520, y: 340, angle: 225 }];
+      this.target = { x: 300, y: 340, radius: 25, powered: false };
+      this.emitter = { x: 100, y: 180, dirX: 1, dirY: 0 };
+    }
+    handleClick(x, y) {
+      for (let m of this.mirrors) {
+        if (Math.hypot(m.x - x, m.y - y) < 40) {
+          m.angle = (m.angle + 45) % 360; sound.playClick(); return;
+        }
+      }
+    }
+    update() {
+      this.laserPoints = [{ x: this.emitter.x, y: this.emitter.y }];
+      let cx = this.emitter.x, cy = this.emitter.y, dx = this.emitter.dirX, dy = this.emitter.dirY;
+      for (let step = 0; step < 5; step++) {
+        let hit = null, minDist = 9999, hitType = null;
+        for (let m of this.mirrors) {
+          const dot = (m.x - cx) * dx + (m.y - cy) * dy;
+          if (dot > 10 && dot < minDist) {
+            minDist = dot; hit = m; hitType = 'mirror';
+          }
+        }
+        if (hitType === 'mirror') {
+          cx = hit.x; cy = hit.y; this.laserPoints.push({ x: cx, y: cy });
+          if (hit.angle === 45 || hit.angle === 225) { const temp = dx; dx = dy; dy = temp; }
+          else { const temp = dx; dx = -dy; dy = -temp; }
+        } else {
+          this.laserPoints.push({ x: cx + dx * 600, y: cy + dy * 600 });
+          break;
+        }
+      }
+    }
+    draw(ctx) {
+      ctx.fillStyle = '#10131a'; ctx.fillRect(0, 0, 800, 500);
+      if (this.laserPoints && this.laserPoints.length > 1) {
+        ctx.strokeStyle = '#00f0ff'; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(this.laserPoints[0].x, this.laserPoints[0].y);
+        for (let i = 1; i < this.laserPoints.length; i++) ctx.lineTo(this.laserPoints[i].x, this.laserPoints[i].y);
+        ctx.stroke();
+      }
+      this.mirrors.forEach(m => {
+        ctx.save(); ctx.translate(m.x, m.y); ctx.rotate((m.angle * Math.PI) / 180);
+        ctx.fillStyle = '#1d2026'; ctx.beginPath(); ctx.arc(0, 0, 22, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#00f0ff'; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.moveTo(-16, 0); ctx.lineTo(16, 0); ctx.stroke();
+        ctx.restore();
+      });
+    }
+  }
+
+  // --- GAME 5: NeoPuck Striker ---
+  class NeoPuckGame {
+    constructor(engine) { this.engine = engine; }
+    init() {
+      this.puck = { x: 400, y: 250, radius: 14, vx: 5, vy: 3 };
+      this.player = { x: 100, y: 250, radius: 28, score: 0 };
+      this.ai = { x: 700, y: 250, radius: 28, score: 0 };
+      this.superSmashActive = false;
+    }
+    handlePointerMove(x, y) {
+      // Direct drag on touch screen
+      this.player.x = Math.max(50, Math.min(360, x));
+      this.player.y = Math.max(60, Math.min(440, y));
+    }
+    triggerSuperSmash() {
+      this.superSmashActive = true;
+      sound.playCoin();
+    }
+    update() {
+      const keys = this.engine.keys;
+      if (keys['ArrowUp'] || keys['KeyW']) this.player.y -= 6;
+      if (keys['ArrowDown'] || keys['KeyS']) this.player.y += 6;
+      if (keys['ArrowLeft'] || keys['KeyA']) this.player.x -= 6;
+      if (keys['ArrowRight'] || keys['KeyD']) this.player.x += 6;
+      this.player.x = Math.max(50, Math.min(360, this.player.x));
+      this.player.y = Math.max(60, Math.min(440, this.player.y));
+      this.ai.y += (this.puck.y - this.ai.y) * 0.08;
+      this.puck.x += this.puck.vx; this.puck.y += this.puck.vy;
+      if (this.puck.y < 50 || this.puck.y > 450) this.puck.vy *= -1;
+      if (Math.hypot(this.puck.x - this.player.x, this.puck.y - this.player.y) < 42) {
+        const smashBoost = this.superSmashActive ? 6 : 0;
+        this.puck.vx = Math.abs(this.puck.vx) + 0.5 + smashBoost;
+        this.superSmashActive = false;
+        sound.playClick();
+      }
+      if (Math.hypot(this.puck.x - this.ai.x, this.puck.y - this.ai.y) < 42) {
+        this.puck.vx = -Math.abs(this.puck.vx) - 0.5; sound.playClick();
+      }
+      if (this.puck.x < 30) { this.ai.score++; this.puck.x = 400; this.puck.vx = 5; }
+      if (this.puck.x > 770) { this.player.score++; this.engine.addScore(200); sound.playScore(); this.puck.x = 400; this.puck.vx = -5; }
+    }
+    draw(ctx) {
+      ctx.fillStyle = '#10131a'; ctx.fillRect(0, 0, 800, 500);
+      ctx.strokeStyle = '#00f0ff'; ctx.lineWidth = 3; ctx.strokeRect(30, 40, 740, 420);
+      ctx.fillStyle = '#00f0ff'; ctx.beginPath(); ctx.arc(this.player.x, this.player.y, 28, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#ddb7ff'; ctx.beginPath(); ctx.arc(this.ai.x, this.ai.y, 28, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(this.puck.x, this.puck.y, 14, 0, Math.PI * 2); ctx.fill();
+      ctx.font = 'bold 36px "Sora", sans-serif'; ctx.fillStyle = '#00f0ff';
+      ctx.fillText(this.player.score, 330, 100); ctx.fillStyle = '#ddb7ff';
+      ctx.fillText(this.ai.score, 470, 100);
+    }
+  }
+
+  // Initialize
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => window.ArcadeManager.init());
+  } else {
+    window.ArcadeManager.init();
+  }
+})();
+
+
+/* =========================================================
+   3. CloudArcade Application UI, Router & Controller
+   ========================================================= */
+// CloudArcade - Main App Coordinator & Real-Time Visitor Presence
+(function() {
+  'use strict';
+
+  // State
+  const state = {
+    currentView: 'discover',
+    searchQuery: '',
+    games: []
+  };
+
+  // DOM Elements
+  const DOM = {
+    homeGamesContainer: document.getElementById('homeGamesContainer'),
+    catalogGamesContainer: document.getElementById('catalogGamesContainer'),
+    searchModal: document.getElementById('searchModal'),
+    searchModalInput: document.getElementById('searchModalInput'),
+    searchResults: document.getElementById('searchModalResults'),
+    mobileDrawer: document.getElementById('mobileDrawer'),
+    mobileDrawerBackdrop: document.getElementById('mobileDrawerBackdrop'),
+    mobileMenuBtn: document.getElementById('mobileMenuBtn'),
+    closeMobileDrawerBtn: document.getElementById('closeMobileDrawerBtn'),
+    audioToggleBtn: document.getElementById('audioToggleBtn')
+  };
+
+  // Initialize Data
+  function loadGames() {
+    state.games = window.GameStorage ? window.GameStorage.getGames() : [];
+    renderAllViews();
+  }
+
+  // Set View (Routing)
+  function setView(viewName) {
+    if (!viewName) viewName = 'discover';
+    state.currentView = viewName;
+
+    // Desktop nav link highlighting
+    document.querySelectorAll('header nav a[data-path]').forEach(a => {
+      if (a.getAttribute('data-path') === viewName) {
+        a.className = 'px-3.5 py-1.5 rounded-lg transition-all bg-primary-container text-on-primary-container font-headline-sm font-semibold shadow-[0_0_12px_rgba(0,240,255,0.3)]';
+      } else {
+        a.className = 'px-3.5 py-1.5 rounded-lg font-headline-sm text-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all';
+      }
+    });
+
+    // Mobile bottom nav link highlighting
+    document.querySelectorAll('.safe-area-pb a[data-path]').forEach(a => {
+      if (a.getAttribute('data-path') === viewName) {
+        a.classList.add('text-primary-container', 'font-bold');
+        a.classList.remove('text-outline');
+      } else {
+        a.classList.remove('text-primary-container', 'font-bold');
+        a.classList.add('text-outline');
+      }
+    });
+
+    // Switch section visibility
+    document.querySelectorAll('.page-view').forEach(el => {
+      if (el.id === `view-${viewName}`) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+
+    window.location.hash = viewName;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Render Views
+  function renderAllViews() {
+    renderHomeView();
+    renderCatalogView();
+  }
+
+  // Render Home Games Section inside Single Group: MINI GAME
+  function renderHomeView() {
+    if (!DOM.homeGamesContainer) return;
+    const games = state.games;
+
+    DOM.homeGamesContainer.innerHTML = `
+      <div class="p-4 sm:p-6 rounded-2xl bg-surface-container-low/70 border border-surface-container flex flex-col gap-4 shadow-xl">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2.5">
+            <span class="px-3 py-1 rounded-lg bg-primary-container text-on-primary-container font-label-sm text-xs font-bold uppercase tracking-wider shadow-[0_0_14px_rgba(0,240,255,0.35)]">
+              MINI GAME
+            </span>
+            <h3 class="font-headline-sm text-base sm:text-lg text-on-surface font-extrabold">Mini Game Collection</h3>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-label-sm text-outline">
+            <span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-semibold">5 Built-in Titles</span>
+            <span>•</span>
+            <span class="text-secondary font-semibold">100% Canvas</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5">
+          ${games.map(game => createGameCardHTML(game)).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // Render Catalog View inside Single Group: MINI GAME
+  function renderCatalogView() {
+    if (!DOM.catalogGamesContainer) return;
+    const games = state.games;
+
+    DOM.catalogGamesContainer.innerHTML = `
+      <div class="p-4 sm:p-6 rounded-2xl bg-surface-container-low/70 border border-surface-container flex flex-col gap-4 shadow-xl">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2.5">
+            <span class="px-3 py-1 rounded-lg bg-primary-container text-on-primary-container font-label-sm text-xs font-bold uppercase tracking-wider shadow-[0_0_14px_rgba(0,240,255,0.35)]">
+              MINI GAME
+            </span>
+            <h3 class="font-headline-sm text-base sm:text-lg text-on-surface font-extrabold">Mini Game Collection</h3>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-label-sm text-outline">
+            <span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-semibold">5 Built-in Titles</span>
+            <span>•</span>
+            <span class="text-secondary font-semibold">100% Canvas</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5">
+          ${games.map(game => createGameCardHTML(game)).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  // Create Card for Playable Games
+  function createGameCardHTML(game) {
+    return `
+      <div class="group relative flex flex-col rounded-xl overflow-hidden bg-surface-container-low shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all border border-surface-container">
+        <div class="relative aspect-[16/10] w-full bg-surface-container-highest flex items-center justify-center overflow-hidden cursor-pointer" onclick="window.launchGame('${game.id}')">
+          <img src="${game.image || game.fallbackImage}" onerror="this.onerror=null; this.src='${game.fallbackImage}';" alt="${game.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-transparent"></div>
+          
+          <span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-primary font-label-sm text-[10px] font-semibold uppercase">
+            ${game.genre || 'Arcade'}
+          </span>
+
+          <span class="absolute top-2 right-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-md text-secondary font-label-sm text-[10px]">
+            MINI GAME
+          </span>
+
+          <!-- Play overlay -->
+          <div class="absolute inset-0 bg-surface-container-lowest/60 backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+            <button type="button" class="px-3.5 py-1.5 rounded-xl bg-primary-container text-on-primary-container font-headline-sm text-xs font-bold shadow-lg flex items-center gap-1">
+              <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              <span>PLAY</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="p-3 flex flex-col gap-1.5 flex-1 justify-between">
+          <div>
+            <div class="flex items-center justify-between text-[11px] font-label-sm text-outline">
+              <span class="truncate">${game.developer}</span>
+              <span class="text-primary-container font-semibold">${game.fps}</span>
+            </div>
+            <h4 class="font-headline-sm text-sm sm:text-base text-on-surface font-bold truncate group-hover:text-primary transition-colors cursor-pointer" onclick="window.launchGame('${game.id}')">
+              ${game.title}
+            </h4>
+            <p class="font-body-sm text-xs text-on-surface-variant line-clamp-2 mt-0.5 leading-relaxed">
+              ${game.description}
+            </p>
+          </div>
+
+          <div class="pt-2 flex items-center justify-between border-t border-surface-container mt-1">
+            <button type="button" onclick="window.launchGame('${game.id}')" class="w-full py-1.5 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-xs font-bold hover:bg-primary-fixed-dim transition-all shadow-sm flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+              <span>Play Now</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Launch Game
+  window.launchGame = function(id) {
+    let game = state.games.find(g => g.id === id);
+    if (!game) {
+      game = state.games[0];
+    }
+    if (window.ArcadeManager && game) {
+      window.ArcadeManager.openGame(game);
+    }
+  };
+
+  // Launch Random Game
+  window.launchRandomGame = function() {
+    if (state.games.length > 0) {
+      const idx = Math.floor(Math.random() * state.games.length);
+      window.launchGame(state.games[idx].id);
+    }
+  };
+
+  // Mobile Drawer Navigation
+  function initMobileDrawer() {
+    window.closeMobileDrawer = function() {
+      if (!DOM.mobileDrawer) return;
+      DOM.mobileDrawer.classList.add('hidden');
+    };
+
+    window.openMobileDrawer = function() {
+      if (!DOM.mobileDrawer) return;
+      DOM.mobileDrawer.classList.remove('hidden');
+    };
+
+    if (DOM.mobileMenuBtn) {
+      DOM.mobileMenuBtn.addEventListener('click', window.openMobileDrawer);
+    }
+    if (DOM.closeMobileDrawerBtn) {
+      DOM.closeMobileDrawerBtn.addEventListener('click', window.closeMobileDrawer);
+    }
+    if (DOM.mobileDrawerBackdrop) {
+      DOM.mobileDrawerBackdrop.addEventListener('click', window.closeMobileDrawer);
+    }
+
+    document.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', window.closeMobileDrawer);
+    });
+  }
+
+  // Search System
+  function initSearch() {
+    window.openSearchModal = function() {
+      if (!DOM.searchModal) return;
+      DOM.searchModal.classList.remove('hidden');
+      DOM.searchModal.classList.add('flex');
+      if (DOM.searchModalInput) {
+        DOM.searchModalInput.value = '';
+        DOM.searchModalInput.focus();
+        renderSearchResults('');
+      }
+    };
+
+    window.closeSearchModal = function() {
+      if (!DOM.searchModal) return;
+      DOM.searchModal.classList.add('hidden');
+      DOM.searchModal.classList.remove('flex');
+    };
+
+    const headerSearchBtn = document.getElementById('headerSearchBtn');
+    if (headerSearchBtn) headerSearchBtn.addEventListener('click', window.openSearchModal);
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        window.openSearchModal();
+      }
+    });
+
+    if (DOM.searchModalInput) {
+      DOM.searchModalInput.addEventListener('input', (e) => {
+        renderSearchResults(e.target.value.toLowerCase().trim());
+      });
+    }
+
+    const closeBtn = document.getElementById('closeSearchModalBtn');
+    if (closeBtn) closeBtn.addEventListener('click', window.closeSearchModal);
+
+    if (DOM.searchModal) {
+      DOM.searchModal.addEventListener('click', (e) => {
+        if (e.target === DOM.searchModal) window.closeSearchModal();
+      });
+    }
+  }
+
+  function renderSearchResults(query) {
+    if (!DOM.searchResults) return;
+    const matches = state.games.filter(g => {
+      if (!query) return true;
+      return g.title.toLowerCase().includes(query) ||
+             (g.genre && g.genre.toLowerCase().includes(query)) ||
+             (g.description && g.description.toLowerCase().includes(query));
+    });
+
+    if (matches.length === 0) {
+      DOM.searchResults.innerHTML = `
+        <div class="py-6 text-center text-on-surface-variant font-body-sm text-xs">
+          No matching games found.
+        </div>
+      `;
+      return;
+    }
+
+    DOM.searchResults.innerHTML = matches.map(game => `
+      <div onclick="window.launchGame('${game.id}'); window.closeSearchModal();" 
+           class="flex items-center justify-between p-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer group">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-container shrink-0">
+            <span class="material-symbols-outlined text-lg">sports_esports</span>
+          </div>
+          <div class="flex flex-col min-w-0">
+            <h4 class="font-headline-sm text-xs sm:text-sm text-on-surface font-bold group-hover:text-primary transition-colors truncate">
+              ${game.title}
+            </h4>
+            <span class="text-[10px] text-outline uppercase font-mono">MINI GAME</span>
+          </div>
+        </div>
+        <button type="button" class="px-2.5 py-1 rounded-lg bg-primary-container text-on-primary-container font-bold text-xs">
+          Play
+        </button>
+      </div>
+    `).join('');
+  }
+
+  // Real-Time Active Visitor Presence Handler
+  function initPresence() {
+    if (window.ArcadePresence) {
+      window.ArcadePresence.subscribe((count) => {
+        const textEl = document.getElementById('liveOnlineText');
+        if (textEl) {
+          if (count <= 1) {
+            textEl.textContent = '1 Active Visitor';
+          } else {
+            textEl.textContent = `${count} Active Visitors`;
+          }
+        }
+      });
+    }
+  }
+
+  // Audio Toggle
+  function initAudioToggle() {
+    if (DOM.audioToggleBtn && window.ArcadeSound) {
+      const isMuted = window.ArcadeSound.muted;
+      DOM.audioToggleBtn.innerHTML = isMuted 
+        ? '<span class="material-symbols-outlined text-base sm:text-lg">volume_off</span>'
+        : '<span class="material-symbols-outlined text-base sm:text-lg">volume_up</span>';
+
+      DOM.audioToggleBtn.addEventListener('click', () => {
+        const muted = window.ArcadeSound.toggleMute();
+        DOM.audioToggleBtn.innerHTML = muted
+          ? '<span class="material-symbols-outlined text-base sm:text-lg">volume_off</span>'
+          : '<span class="material-symbols-outlined text-base sm:text-lg">volume_up</span>';
+        if (!muted) window.ArcadeSound.playCoin();
+      });
+    }
+  }
+
+  // Arcade Modal Action Listeners
+  function initArcadeModal() {
+    const closeBtn = document.getElementById('closeArcadeModalBtn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => window.ArcadeManager.closeModal());
+    }
+    const restartBtn = document.getElementById('arcadeRestartBtn');
+    if (restartBtn) {
+      restartBtn.addEventListener('click', () => window.ArcadeManager.restart());
+    }
+    const pauseBtn = document.getElementById('arcadePauseBtn');
+    if (pauseBtn) {
+      pauseBtn.addEventListener('click', () => window.ArcadeManager.togglePause());
+    }
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    // Nav links
+    document.querySelectorAll('[data-path]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = link.getAttribute('data-path');
+        if (target) setView(target);
+      });
+    });
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '') || 'discover';
+      setView(hash);
+    });
+
+    initPresence();
+    initMobileDrawer();
+    initSearch();
+    initAudioToggle();
+    initArcadeModal();
+    loadGames();
+
+    const initialHash = window.location.hash.replace('#', '') || 'discover';
+    setView(initialHash);
+  });
+
+})();
+
+  </script>
+
 </body>
 </html>
